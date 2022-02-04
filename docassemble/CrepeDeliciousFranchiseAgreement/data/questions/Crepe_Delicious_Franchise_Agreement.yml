@@ -75,57 +75,37 @@ code: |
   allowed_courts = interview_metadata["Crepe_Delicious_Franchise_Agreement"]["allowed courts"]
   nav.set_section('review_Crepe_Delicious_Franchise_Agreement')
   user_role = 'na'
-  franchisees1_identifier
-  date_of_signing
-  users1_title
-  california
-  bank1_name
+  
+  
   set_progress(8)
+  
   territory
-  franchisors_rep1_title
-  franchisees1_partnership
-  franchisee_managers1_address
-  franchisee_owners1_address
+  
   set_progress(16)
+  
   users.gather()
   set_parts(subtitle=str(users))
+  
   signature_date
-  franchisee_managers.gather()
+
   set_progress(25)
-  franchisee_owners.gather()
-  franchisees[0].address.address
-  set_progress(33)
-  franchisees[0].phone_number
-  franchisee_owners[0].email
+
   franchisees.gather()
+  franchisee_owners.gather()  
+  franchisee_managers.gather() 
+  
   set_progress(41)
+  
   franchisors_rep.gather()
+  
   set_progress(50)
-  initials_1
-  initials_2
-  initials_3
-  initials_4
-  franchisors_rep1_signature_1
-  set_progress(58)
-  users1_signature_1
-  franchisors_rep1_signature_2
-  users1_signature_2
-  users1_signature_3
-  owners_signature_4
+  
   set_progress(66)
-  owners_signature_1
-  owners_signature_5
-  owners_signature_2
-  owners_signature_6
-  owners_signature_7
+  
   set_progress(75)
-  owners_signature_3
-  franchisors_rep1_signature_3
-  franchisors_rep1_signature_4
-  users1_signature_4
-  users1_signature_5
+
   set_progress(83)
-  users1_signature_6
+  
   interview_order_Crepe_Delicious_Franchise_Agreement = True
 ---
 ###################### Main order ######################
@@ -141,11 +121,11 @@ code: |
   # Save anonymized interview statistics (customize the saved data below)
   store_variables_snapshot(data={'zip': users[0].address.zip})
   Crepe_Delicious_Franchise_Agreement_preview_question
-  basic_questions_signature_flow
-  franchisors_rep[0].signature
-  owners[0].signature
-  users[1].signature
-  users[0].signature
+  #basic_questions_signature_flow
+  #franchisors_rep[0].signature
+  #owners[0].signature
+  #users[1].signature
+  #users[0].signature
   Crepe_Delicious_Franchise_Agreement_download
 ---
 comment: |
@@ -168,52 +148,39 @@ fields:
   - "Franchisee Address": franchisees1_address
     input type: area
     maxlength: 108
-  - "Franchisees1 name full 2": franchisees1_name_full_2
-    maxlength: 36
-  - "Franchisees1 name full 3": franchisees1_name_full_3
-    input type: area
-    maxlength: 134
-  - "Franchisees1 name full 4": franchisees1_name_full_4
-    maxlength: 36
-  - "Franchisees1 name full 5": franchisees1_name_full_5
-    maxlength: 31
-  - "Franchisees1 name full 6": franchisees1_name_full_6
-    maxlength: 84
-  - "Franchisees1 name full 7": franchisees1_name_full_7
-    maxlength: 56
   - "Franchisees1 business number": franchisees1_business_number
     maxlength: 24
 ---
-id: Dates
-question: |
-  Dates
-fields:
-  - "Date of signing": date_of_signing
-    datatype: date
-  - "Signature date 2": signature_date_2
-    maxlength: 23
-  - "Signature date 3": signature_date_3
-    maxlength: 31
-  - "Signature date 4": signature_date_4
-    maxlength: 31
-  - "Signature date 5": signature_date_5
-    maxlength: 31
-  - "Signature date 7": signature_date_7
-    maxlength: 2
-  - "Signature date 6": signature_date_6
-    maxlength: 27
-  - "Signature date 9": signature_date_9
-    maxlength: 2
-  - "Signature date 8": signature_date_8
-    maxlength: 22
-  - "Signature date 10": signature_date_10
-    maxlength: 36
-  - "Signature date 11": signature_date_11
-    maxlength: 6
-  - "Signature date 12": signature_date_12
-    maxlength: 29
-  - "Signature date 13": signature_date_13
-    maxlength: 31
+#id: Dates
+#question: |
+#  Dates
+#fields:
+#  - "Date of signing": date_of_signing
+#    datatype: date
+#  - "Signature date 2": signature_date_2
+#    maxlength: 23
+#  - "Signature date 3": signature_date_3
+#    maxlength: 31
+#  - "Signature date 4": signature_date_4
+#    maxlength: 31
+#  - "Signature date 5": signature_date_5
+#    maxlength: 31
+#  - "Signature date 7": signature_date_7
+#    maxlength: 2
+#  - "Signature date 6": signature_date_6
+#    maxlength: 27
+#  - "Signature date 9": signature_date_9
+#    maxlength: 2
+#  - "Signature date 8": signature_date_8
+#    maxlength: 22
+#  - "Signature date 10": signature_date_10
+#    maxlength: 36
+#  - "Signature date 11": signature_date_11
+#    maxlength: 6
+#  - "Signature date 12": signature_date_12
+#    maxlength: 29
+#  - "Signature date 13": signature_date_13
+#    maxlength: 31
 ---
 id: User info
 question: |
@@ -244,40 +211,26 @@ fields:
 ---
 id: Checkboxes
 question: |
-  Checkboxes
+  Are there any applicable addenda?
 fields:
-  - "California": california
-    datatype: yesno
-  - "Michigan": michigan
-    datatype: yesno
-  - "Rhode island": rhode_island
-    datatype: yesno
-  - "Minnesota": minnesota
-    datatype: yesno
-  - "Hawaii": hawaii
-    datatype: yesno
-  - "South dakota": south_dakota
-    datatype: yesno
-  - "Virginia": virginia
-    datatype: yesno
-  - "Illinois": illinois
-    datatype: yesno
-  - "New york": new_york
-    datatype: yesno
-  - "Washington": washington
-    datatype: yesno
-  - "Iowa": iowa
-    datatype: yesno
-  - "North dakota": north_dakota
-    datatype: yesno
-  - "Indiana": indiana
-    datatype: yesno
-  - "Ohio": ohio
-    datatype: yesno
-  - "Wisconsin": wisconsin
-    datatype: yesno
-  - "Maryland": maryland
-    datatype: yesno
+  - no label: addenda
+    choices:
+      - "California": california
+      - "Michigan": michigan
+      - "Rhode island": rhode_island
+      - "Minnesota": minnesota
+      - "Hawaii": hawaii
+      - "South dakota": south_dakota
+      - "Virginia": virginia
+      - "Illinois": illinois
+      - "New york": new_york
+      - "Washington": washington
+      - "Iowa": iowa
+      - "North dakota": north_dakota
+      - "Indiana": indiana
+      - "Ohio": ohio
+      - "Wisconsin": wisconsin
+      - "Maryland": maryland
 ---
 id: Bank info
 question: |
@@ -312,38 +265,28 @@ fields:
     maxlength: 78
   - "Territory 1": territory_1
     maxlength: 78
-  - "State and state of formation": state_and_state_of_formation
+  - "City and state of formation": state_and_state_of_formation
     maxlength: 98
 ---
 id: Franchisors Rep Info
 question: |
   Franchisors Rep Info
 fields:
-  - "Franchisee Title": franchisors_rep1_title
+  - "Franchisors Title": franchisors_rep1_title
     maxlength: 31
   - "Franchisors rep1 name full 1": franchisors_rep1_name_full_1
     maxlength: 24
-  - "Franchisors rep1 title 1": franchisors_rep1_title_1
-    maxlength: 31
-  - "Franchisors rep1 title 2": franchisors_rep1_title_2
-    maxlength: 24
-  - "Franchisors rep1 title 3": franchisors_rep1_title_3
-    maxlength: 64
-  - "Franchisors rep1 title 4": franchisors_rep1_title_4
-    maxlength: 74
 ---
 id: Franchisees Checkboxes
 question: |
-  Franchisees Checkboxes
+  Form of Ownership
 fields:
-  - "Franchisees1 partnership": franchisees1_partnership
-    datatype: yesno
-  - "Franchisees1 corporation": franchisees1_corporation
-    datatype: yesno
-  - "Franchisees1 individual": franchisees1_individual
-    datatype: yesno
-  - "Franchisees1 llc": franchisees1_llc
-    datatype: yesno
+  - no label: ownership_form
+    choices:
+      - "Partnership": franchisees1_partnership
+      - "Corporation": franchisees1_corporation
+      - "Individual": franchisees1_individual
+      - "LLC": franchisees1_llc
 ---
 id: Franchisee Managers
 question: |
@@ -353,18 +296,6 @@ fields:
     maxlength: 26
   - "Franchisee managers1 title": franchisee_managers1_title
     maxlength: 26
-  - "Franchisee managers2 address": franchisee_managers2_address
-    maxlength: 26
-  - "Franchisee managers2 title": franchisee_managers2_title
-    maxlength: 26
-  - "Franchisee managers3 address": franchisee_managers3_address
-    maxlength: 26
-  - "Franchisee managers3 title": franchisee_managers3_title
-    maxlength: 26
-  - "Franchisee managers4 address": franchisee_managers4_address
-    maxlength: 26
-  - "Franchisee managers4 title": franchisee_managers4_title
-    maxlength: 26
 ---
 id: Franchisee Owners
 question: |
@@ -373,18 +304,6 @@ fields:
   - "Franchisee owners1 address": franchisee_owners1_address
     maxlength: 52
   - "Franchisee owners1 percentage": franchisee_owners1_percentage
-    maxlength: 52
-  - "Franchisee owners2 address": franchisee_owners2_address
-    maxlength: 52
-  - "Franchisee owners2 percentage": franchisee_owners2_percentage
-    maxlength: 52
-  - "Franchisee owners3 address": franchisee_owners3_address
-    maxlength: 52
-  - "Franchisee owners3 percentage": franchisee_owners3_percentage
-    maxlength: 52
-  - "Franchisee owners4 address": franchisee_owners4_address
-    maxlength: 52
-  - "Franchisee owners4 percentage": franchisee_owners4_percentage
     maxlength: 52
   - "Franchisee owners1 contact info": franchisee_owners1_contact_info
     maxlength: 80
@@ -406,7 +325,7 @@ subquestion: |
 continue button field: Crepe_Delicious_Franchise_Agreement_preview_question    
 ---
 code: |
-  signature_fields = ['franchisors_rep[0].signature', 'owners[0].signature', 'users[1].signature', 'users[0].signature', 'initials_1', 'initials_2', 'initials_3', 'initials_4', 'franchisors_rep1_signature_1', 'users1_signature_1', 'franchisors_rep1_signature_2', 'users1_signature_2', 'users1_signature_3', 'owners_signature_4', 'owners_signature_1', 'owners_signature_5', 'owners_signature_2', 'owners_signature_6', 'owners_signature_7', 'owners_signature_3', 'franchisors_rep1_signature_3', 'franchisors_rep1_signature_4', 'users1_signature_4', 'users1_signature_5', 'users1_signature_6']
+  signature_fields = ['franchisors_rep[0].signature', 'users[1].signature', 'users[0].signature', 'initials_1', 'initials_2', 'initials_3', 'initials_4', 'franchisors_rep1_signature_1', 'users1_signature_1', 'franchisors_rep1_signature_2', 'users1_signature_2', 'users1_signature_3', 'franchisee_owners1_signature', 'franchisee_owners2_signature', 'franchisee_owners3_signature', 'franchisee_owners4_signature', 'franchisee_owners5_signature', 'franchisee_owners6_signature', 'franchisee_owners7_signature', 'franchisee_owners8_signature', 'franchisors_rep1_signature_3', 'franchisors_rep1_signature_4', 'users1_signature_4', 'users1_signature_5', 'users1_signature_6']
 ---
 id: Crepe Delicious Franchise Agreement review screen
 event: review_Crepe_Delicious_Franchise_Agreement
@@ -812,13 +731,6 @@ review:
       % for item in franchisors_rep:
         * ${ item }
       % endfor
-  - Edit: owners.revisit
-    button: |
-      **Owners**
-
-      % for item in owners:
-        * ${ item }
-      % endfor
   - Edit: initials_1
     button: |
       **initials_1**:
@@ -855,34 +767,38 @@ review:
     button: |
       **users1_signature_3**:
       ${ users1_signature_3 }
-  - Edit: owners_signature_4
+  - Edit: franchisee_owners1_signature
     button: |
-      **owners_signature_4**:
-      ${ owners_signature_4 }
-  - Edit: owners_signature_1
+      **franchisee_owners1_signature**:
+      ${ franchisee_owners1_signature }
+  - Edit: franchisee_owners2_signature
     button: |
-      **owners_signature_1**:
-      ${ owners_signature_1 }
-  - Edit: owners_signature_5
+      **franchisee_owners2_signature**:
+      ${ franchisee_owners2_signature }
+  - Edit: franchisee_owners3_signature
     button: |
-      **owners_signature_5**:
-      ${ owners_signature_5 }
-  - Edit: owners_signature_2
+      **franchisee_owners3_signature**:
+      ${ franchisee_owners3_signature }
+  - Edit: franchisee_owners4_signature
     button: |
-      **owners_signature_2**:
-      ${ owners_signature_2 }
-  - Edit: owners_signature_6
+      **franchisee_owners4_signature**:
+      ${ franchisee_owners4_signature }
+  - Edit: franchisee_owners5_signature
     button: |
-      **owners_signature_6**:
-      ${ owners_signature_6 }
-  - Edit: owners_signature_7
+      **franchisee_owners5_signature**:
+      ${ franchisee_owners5_signature }
+  - Edit: franchisee_owners6_signature
     button: |
-      **owners_signature_7**:
-      ${ owners_signature_7 }
-  - Edit: owners_signature_3
+      **franchisee_owners6_signature**:
+      ${ franchisee_owners6_signature }
+  - Edit: franchisee_owners7_signature
     button: |
-      **owners_signature_3**:
-      ${ owners_signature_3 }
+      **franchisee_owners7_signature**:
+      ${ franchisee_owners7_signature }
+  - Edit: franchisee_owners8_signature
+    button: |
+      **franchisee_owners8_signature**:
+      ${ franchisee_owners8_signature }
   - Edit: franchisors_rep1_signature_3
     button: |
       **franchisors_rep1_signature_3**:
@@ -1086,7 +1002,6 @@ attachments:
       - "franchisees1_address_line_one": ${ franchisees[0].address.line_one() }
       - "franchisors_rep1_name_full": ${ franchisors_rep[0] }
       - "franchisors_rep1_signature": ${ franchisors_rep[0].signature_if_final(i) }
-      - "owners_signature": ${ owners[0].signature_if_final(i) }
       - "franchisees1_identifier": ${ franchisees1_identifier }
       - "date_of_signing": ${ date_of_signing }
       - "territory": ${ territory }
@@ -1199,19 +1114,21 @@ attachments:
       # It's a signature: test which file version this is; leave empty unless it's the final version)
       - "users1_signature_3": ${ users1_signature_3 if i == 'final' else '' }
       # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "owners_signature_4": ${ owners_signature_4 if i == 'final' else '' }
+      - "franchisee_owners1_signature": ${ franchisee_owners1_signature if i == 'final' else '' }
       # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "owners_signature_1": ${ owners_signature_1 if i == 'final' else '' }
+      - "franchisee_owners2_signature": ${ franchisee_owners2_signature if i == 'final' else '' }
       # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "owners_signature_5": ${ owners_signature_5 if i == 'final' else '' }
+      - "franchisee_owners3_signature": ${ franchisee_owners3_signature if i == 'final' else '' }
       # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "owners_signature_2": ${ owners_signature_2 if i == 'final' else '' }
+      - "franchisee_owners4_signature": ${ franchisee_owners4_signature if i == 'final' else '' }
       # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "owners_signature_6": ${ owners_signature_6 if i == 'final' else '' }
+      - "franchisee_owners5_signature": ${ franchisee_owners5_signature if i == 'final' else '' }
       # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "owners_signature_7": ${ owners_signature_7 if i == 'final' else '' }
+      - "franchisee_owners6_signature": ${ franchisee_owners6_signature if i == 'final' else '' }
       # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "owners_signature_3": ${ owners_signature_3 if i == 'final' else '' }
+      - "franchisee_owners7_signature": ${ franchisee_owners7_signature if i == 'final' else '' }
+      # It's a signature: test which file version this is; leave empty unless it's the final version)
+      - "franchisee_owners8_signature": ${ franchisee_owners8_signature if i == 'final' else '' }
       # It's a signature: test which file version this is; leave empty unless it's the final version)
       - "franchisors_rep1_signature_3": ${ franchisors_rep1_signature_3 if i == 'final' else '' }
       # It's a signature: test which file version this is; leave empty unless it's the final version)

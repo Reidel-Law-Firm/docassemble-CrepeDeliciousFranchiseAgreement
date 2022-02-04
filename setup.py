@@ -43,7 +43,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
     return out
 
 setup(name='docassemble.CrepeDeliciousFranchiseAgreement',
-      version='1.0',
+      version='1.1',
       description=('Crepe Delicious Franchise Agreement'),
       long_description='# docassemble.CrepeDeliciousFranchiseAgreement\r\n\r\nCrepe Delicious Franchise Agreement\r\n\r\n## Author\r\n\r\nSchuyler "Rocky" Reidel\r\n\r\nadmin@docs.reidellawfirm.com\r\n\r\n',
       long_description_content_type='text/markdown',
@@ -53,7 +53,7 @@ setup(name='docassemble.CrepeDeliciousFranchiseAgreement',
       url='https://courtformsonline.org',
       packages=find_packages(),
       namespace_packages=['docassemble'],
-      install_requires=['docassemble.AssemblyLine>=2.8.0'],
+      install_requires=['docassemble.AssemblyLine>=2.10.0'],
       zip_safe=False,
       package_data=find_package_data(where='docassemble/CrepeDeliciousFranchiseAgreement/', package='docassemble.CrepeDeliciousFranchiseAgreement'),
      )
