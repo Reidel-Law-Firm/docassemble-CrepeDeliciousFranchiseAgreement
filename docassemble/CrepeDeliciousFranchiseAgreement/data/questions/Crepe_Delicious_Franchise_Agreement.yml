@@ -114,7 +114,7 @@ comment: |
   Delete mandatory: True to include in another interview
 mandatory: True
 code: |
-  al_intro_screen
+  #al_intro_screen
   Crepe_Delicious_Franchise_Agreement_intro
   interview_order_Crepe_Delicious_Franchise_Agreement
   signature_date
@@ -137,6 +137,32 @@ question: |
 subquestion: |
   Crepe Delicious Franchise Agreement
 ---
+id: your name
+sets:
+    - users[0].name.first
+    - users[0].name.last
+    - users[0].name.middle
+    - users[0].name.suffix
+question:  |
+  What is your name and title?
+fields:
+  - code: |
+      users[0].name_fields()
+  - Title: users[0].title
+---
+sets:
+  - users[i].name.first
+  - users[i].name.last
+  - users[i].name.middle
+  - users[i].name.suffix    
+id: other users names
+question: |
+  What is the ${ ordinal_number(i) } person's name and title?
+fields:
+  - code: |
+      users[i].name_fields()
+  - Title: users[i].title
+---
 id: Franchisee Info
 question: |
   Franchisee Info
@@ -151,63 +177,12 @@ fields:
   - "Franchisees1 business number": franchisees1_business_number
     maxlength: 24
 ---
-#id: Dates
-#question: |
-#  Dates
-#fields:
-#  - "Date of signing": date_of_signing
-#    datatype: date
-#  - "Signature date 2": signature_date_2
-#    maxlength: 23
-#  - "Signature date 3": signature_date_3
-#    maxlength: 31
-#  - "Signature date 4": signature_date_4
-#    maxlength: 31
-#  - "Signature date 5": signature_date_5
-#    maxlength: 31
-#  - "Signature date 7": signature_date_7
-#    maxlength: 2
-#  - "Signature date 6": signature_date_6
-#    maxlength: 27
-#  - "Signature date 9": signature_date_9
-#    maxlength: 2
-#  - "Signature date 8": signature_date_8
-#    maxlength: 22
-#  - "Signature date 10": signature_date_10
-#    maxlength: 36
-#  - "Signature date 11": signature_date_11
-#    maxlength: 6
-#  - "Signature date 12": signature_date_12
-#    maxlength: 29
-#  - "Signature date 13": signature_date_13
-#    maxlength: 31
----
-id: User info
+id: User title
 question: |
-  User info
+  What is your title?
 fields:
-  - "ss": users1_title
+  - "no label": users_title
     maxlength: 31
-  - "ss": users2_title
-    maxlength: 31
-  - "Users1 name full 1": users1_name_full_1
-    maxlength: 24
-  - "Users1 title 1": users1_title_1
-    maxlength: 31
-  - "Users1 name full 2": users1_name_full_2
-    maxlength: 24
-  - "Users1 title 2": users1_title_2
-    maxlength: 31
-  - "Users1 name full 3": users1_name_full_3
-    maxlength: 24
-  - "Users1 title 4": users1_title_4
-    maxlength: 74
-  - "Users1 name full 4": users1_name_full_4
-    maxlength: 43
-  - "Users1 name full 5": users1_name_full_5
-    maxlength: 34
-  - "Users1 title 5": users1_title_5
-    maxlength: 37
 ---
 id: Checkboxes
 question: |
@@ -986,7 +961,7 @@ attachments:
       - "users1_name_full": ${ users[0] }
       - "users2_signature": ${ users[1].signature_if_final(i) }
       - "users2_name_full": ${ users[1] }
-      - "signature_date": ${ signature_date }
+      - "signature_date": ${ today() }
       - "franchisee_managers2_name_full": ${ franchisee_managers[1] }
       - "franchisee_owners3_name_full": ${ franchisee_owners[2] }
       - "franchisee_owners1_name_full": ${ franchisee_owners[0] }
@@ -1003,30 +978,30 @@ attachments:
       - "franchisors_rep1_name_full": ${ franchisors_rep[0] }
       - "franchisors_rep1_signature": ${ franchisors_rep[0].signature_if_final(i) }
       - "franchisees1_identifier": ${ franchisees1_identifier }
-      - "date_of_signing": ${ date_of_signing }
+      - "date_of_signing": ${ today() }
       - "territory": ${ territory }
       - "franchisees1_name_full_1": ${ franchisees1_name_full_1 }
       - "franchisees1_name_full_1": ${ franchisees1_name_full_1 }
-      - "users1_title": ${ users1_title }
-      - "users2_title": ${ users2_title }
+      - "users1_title": ${ users[0].title }
+      - "users2_title": ${ users[1].title }
       - "franchisees1_address": ${ franchisees1_address }
       - "franchisors_rep1_title": ${ franchisors_rep1_title }
-      - "signature_date_2": ${ signature_date_2 }
+      - "signature_date_2": ${ today() }
       - "area_description": ${ area_description }
       - "franchisors_rep1_name_full_1": ${ franchisors_rep1_name_full_1 }
       - "users1_name_full_1": ${ users1_name_full_1 }
       - "franchisors_rep1_title_1": ${ franchisors_rep1_title_1 }
-      - "users1_title_1": ${ users1_title_1 }
+      - "users1_title_1": ${ users[0].title }
       - "approved_location": ${ approved_location }
       - "territory_1": ${ territory_1 }
       - "franchisees1_name_full_2": ${ franchisees1_name_full_2 }
       - "franchisors_rep1_title_2": ${ franchisors_rep1_title_2 }
       - "franchisors_rep1_title_2": ${ franchisors_rep1_title_2 }
       - "users1_name_full_2": ${ users1_name_full_2 }
-      - "users1_title_2": ${ users1_title_2 }
-      - "users1_title_2": ${ users1_title_2 }
-      - "signature_date_3": ${ signature_date_3 }
-      - "signature_date_4": ${ signature_date_4 }
+      - "users1_title_2": ${ users[1].title }
+      - "users1_title_2": ${ users[1].title }
+      - "signature_date_3": ${ today() }
+      - "signature_date_4": ${ today() }
       - "franchisees1_name_full_3": ${ franchisees1_name_full_3 }
       - "franchisees1_partnership": ${ franchisees1_partnership }
       - "franchisees1_corporation": ${ franchisees1_corporation }
@@ -1051,13 +1026,13 @@ attachments:
       - "franchisee_owners4_percentage": ${ franchisee_owners4_percentage }
       - "franchisees1_name_full_4": ${ franchisees1_name_full_4 }
       - "users1_name_full_3": ${ users1_name_full_3 }
-      - "signature_date_5": ${ signature_date_5 }
+      - "signature_date_5": ${ today() }
       - "franchisees1_name_full_5": ${ franchisees1_name_full_5 }
-      - "signature_date_7": ${ signature_date_7 }
-      - "signature_date_6": ${ signature_date_6 }
+      - "signature_date_7": ${ today() }
+      - "signature_date_6": ${ today() }
       - "franchisors_rep1_title_3": ${ franchisors_rep1_title_3 }
-      - "signature_date_9": ${ signature_date_9 }
-      - "signature_date_8": ${ signature_date_8 }
+      - "signature_date_9": ${ today() }
+      - "signature_date_8": ${ today() }
       - "california": ${ california }
       - "michigan": ${ michigan }
       - "rhode_island": ${ rhode_island }
@@ -1074,12 +1049,12 @@ attachments:
       - "ohio": ${ ohio }
       - "wisconsin": ${ wisconsin }
       - "maryland": ${ maryland }
-      - "signature_date_10": ${ signature_date_10 }
-      - "signature_date_11": ${ signature_date_11 }
+      - "signature_date_10": ${ today() }
+      - "signature_date_11": ${ today() }
       - "franchisors_rep1_title_4": ${ franchisors_rep1_title_4 }
       - "franchisees1_name_full_6": ${ franchisees1_name_full_6 }
       - "users1_title_4": ${ users1_title_4 }
-      - "signature_date_12": ${ signature_date_12 }
+      - "signature_date_12": ${ today() }
       - "users1_name_full_4": ${ users1_name_full_4 }
       - "franchisees1_name_full_7": ${ franchisees1_name_full_7 }
       - "franchisees1_business_number": ${ franchisees1_business_number }
@@ -1091,7 +1066,7 @@ attachments:
       - "savings_account": ${ savings_account }
       - "checking_account": ${ checking_account }
       - "bank1_phone_number": ${ bank1_phone_number }
-      - "signature_date_13": ${ signature_date_13 }
+      - "signature_date_13": ${ today() }
       - "users1_name_full_5": ${ users1_name_full_5 }
       - "users1_title_5": ${ users1_title_5 }
       - "fed_tax_id_number": ${ fed_tax_id_number }

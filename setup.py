@@ -53,7 +53,7 @@ setup(name='docassemble.CrepeDeliciousFranchiseAgreement',
       url='https://courtformsonline.org',
       packages=find_packages(),
       namespace_packages=['docassemble'],
-      install_requires=['docassemble.AssemblyLine>=2.10.0'],
+      install_requires=['docassemble.AssemblyLine>=2.10.1'],
       zip_safe=False,
       package_data=find_package_data(where='docassemble/CrepeDeliciousFranchiseAgreement/', package='docassemble.CrepeDeliciousFranchiseAgreement'),
      )
