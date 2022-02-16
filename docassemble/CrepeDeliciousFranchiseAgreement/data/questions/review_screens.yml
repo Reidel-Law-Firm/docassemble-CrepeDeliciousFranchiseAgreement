@@ -1,0 +1,617 @@
+---
+id: Crepe Delicious Franchise Agreement review screen
+event: review_Crepe_Delicious_Franchise_Agreement
+question: |
+  Review your answers
+review:
+  - Edit: franchisees1_identifier
+    button: |
+      **What is the Franchise #?**:
+      ${ franchisees1_identifier }
+  - Edit: date_of_signing
+    button: |
+      **Date of signing**:
+      ${ date_of_signing }
+  - Edit: territory
+    button: |
+      **Territory?**:
+      ${ territory }
+  - Edit: franchisees1_name_full_1
+    button: |
+      **Franchisee Name**:
+      ${ franchisees1_name_full_1 }
+  - Edit: users1_title
+    button: |
+      **ss**:
+      ${ users1_title }
+  - Edit: users2_title
+    button: |
+      **ss**:
+      ${ users2_title }
+  - Edit: franchisees1_address
+    button: |
+      **Franchisee Address**:
+      > ${ single_paragraph(franchisees1_address) }
+  - Edit: franchisors_rep1_title
+    button: |
+      **Franchisee Title**:
+      ${ franchisors_rep1_title }
+  - Edit: signature_date_2
+    button: |
+      **Signature date 2**:
+      ${ signature_date_2 }
+  - Edit: area_description
+    button: |
+      **Area description**:
+      ${ area_description }
+  - Edit: franchisors_rep1_name_full_1
+    button: |
+      **Franchisors rep1 name full 1**:
+      ${ franchisors_rep1_name_full_1 }
+  - Edit: users1_name_full_1
+    button: |
+      **Users1 name full 1**:
+      ${ users1_name_full_1 }
+  - Edit: franchisors_rep1_title_1
+    button: |
+      **Franchisors rep1 title 1**:
+      ${ franchisors_rep1_title_1 }
+  - Edit: users1_title_1
+    button: |
+      **Users1 title 1**:
+      ${ users1_title_1 }
+  - Edit: approved_location
+    button: |
+      **Approved location**:
+      ${ approved_location }
+  - Edit: territory_1
+    button: |
+      **Territory 1**:
+      ${ territory_1 }
+  - Edit: franchisees1_name_full_2
+    button: |
+      **Franchisees1 name full 2**:
+      ${ franchisees1_name_full_2 }
+  - Edit: franchisors_rep1_title_2
+    button: |
+      **Franchisors rep1 title 2**:
+      ${ franchisors_rep1_title_2 }
+  - Edit: users1_name_full_2
+    button: |
+      **Users1 name full 2**:
+      ${ users1_name_full_2 }
+  - Edit: users1_title_2
+    button: |
+      **Users1 title 2**:
+      ${ users1_title_2 }
+  - Edit: signature_date_3
+    button: |
+      **Signature date 3**:
+      ${ signature_date_3 }
+  - Edit: signature_date_4
+    button: |
+      **Signature date 4**:
+      ${ signature_date_4 }
+  - Edit: franchisees1_name_full_3
+    button: |
+      **Franchisees1 name full 3**:
+      > ${ single_paragraph(franchisees1_name_full_3) }
+  - Edit: franchisees1_partnership
+    button: |
+      **Franchisees1 partnership**:
+      ${ word(yesno(franchisees1_partnership)) }
+  - Edit: franchisees1_corporation
+    button: |
+      **Franchisees1 corporation**:
+      ${ word(yesno(franchisees1_corporation)) }
+  - Edit: franchisees1_individual
+    button: |
+      **Franchisees1 individual**:
+      ${ word(yesno(franchisees1_individual)) }
+  - Edit: franchisees1_llc
+    button: |
+      **Franchisees1 llc**:
+      ${ word(yesno(franchisees1_llc)) }
+  - Edit: state_and_state_of_formation
+    button: |
+      **State and state of formation**:
+      ${ state_and_state_of_formation }
+  - Edit: franchisee_managers1_address
+    button: |
+      **Franchisee managers1 address**:
+      ${ franchisee_managers1_address }
+  - Edit: franchisee_managers1_title
+    button: |
+      **Franchisee managers1 title**:
+      ${ franchisee_managers1_title }
+  - Edit: franchisee_managers2_address
+    button: |
+      **Franchisee managers2 address**:
+      ${ franchisee_managers2_address }
+  - Edit: franchisee_managers2_title
+    button: |
+      **Franchisee managers2 title**:
+      ${ franchisee_managers2_title }
+  - Edit: franchisee_managers3_address
+    button: |
+      **Franchisee managers3 address**:
+      ${ franchisee_managers3_address }
+  - Edit: franchisee_managers3_title
+    button: |
+      **Franchisee managers3 title**:
+      ${ franchisee_managers3_title }
+  - Edit: franchisee_managers4_address
+    button: |
+      **Franchisee managers4 address**:
+      ${ franchisee_managers4_address }
+  - Edit: franchisee_managers4_title
+    button: |
+      **Franchisee managers4 title**:
+      ${ franchisee_managers4_title }
+  - Edit: franchisee_owners1_address
+    button: |
+      **Franchisee owners1 address**:
+      ${ franchisee_owners1_address }
+  - Edit: franchisee_owners1_percentage
+    button: |
+      **Franchisee owners1 percentage**:
+      ${ franchisee_owners1_percentage }
+  - Edit: franchisee_owners2_address
+    button: |
+      **Franchisee owners2 address**:
+      ${ franchisee_owners2_address }
+  - Edit: franchisee_owners2_percentage
+    button: |
+      **Franchisee owners2 percentage**:
+      ${ franchisee_owners2_percentage }
+  - Edit: franchisee_owners3_address
+    button: |
+      **Franchisee owners3 address**:
+      ${ franchisee_owners3_address }
+  - Edit: franchisee_owners3_percentage
+    button: |
+      **Franchisee owners3 percentage**:
+      ${ franchisee_owners3_percentage }
+  - Edit: franchisee_owners4_address
+    button: |
+      **Franchisee owners4 address**:
+      ${ franchisee_owners4_address }
+  - Edit: franchisee_owners4_percentage
+    button: |
+      **Franchisee owners4 percentage**:
+      ${ franchisee_owners4_percentage }
+  - Edit: franchisees1_name_full_4
+    button: |
+      **Franchisees1 name full 4**:
+      ${ franchisees1_name_full_4 }
+  - Edit: users1_name_full_3
+    button: |
+      **Users1 name full 3**:
+      ${ users1_name_full_3 }
+  - Edit: signature_date_5
+    button: |
+      **Signature date 5**:
+      ${ signature_date_5 }
+  - Edit: franchisees1_name_full_5
+    button: |
+      **Franchisees1 name full 5**:
+      ${ franchisees1_name_full_5 }
+  - Edit: signature_date_7
+    button: |
+      **Signature date 7**:
+      ${ signature_date_7 }
+  - Edit: signature_date_6
+    button: |
+      **Signature date 6**:
+      ${ signature_date_6 }
+  - Edit: franchisors_rep1_title_3
+    button: |
+      **Franchisors rep1 title 3**:
+      ${ franchisors_rep1_title_3 }
+  - Edit: signature_date_9
+    button: |
+      **Signature date 9**:
+      ${ signature_date_9 }
+  - Edit: signature_date_8
+    button: |
+      **Signature date 8**:
+      ${ signature_date_8 }
+  - Edit: california
+    button: |
+      **California**:
+      ${ word(yesno(california)) }
+  - Edit: michigan
+    button: |
+      **Michigan**:
+      ${ word(yesno(michigan)) }
+  - Edit: rhode_island
+    button: |
+      **Rhode island**:
+      ${ word(yesno(rhode_island)) }
+  - Edit: minnesota
+    button: |
+      **Minnesota**:
+      ${ word(yesno(minnesota)) }
+  - Edit: hawaii
+    button: |
+      **Hawaii**:
+      ${ word(yesno(hawaii)) }
+  - Edit: south_dakota
+    button: |
+      **South dakota**:
+      ${ word(yesno(south_dakota)) }
+  - Edit: virginia
+    button: |
+      **Virginia**:
+      ${ word(yesno(virginia)) }
+  - Edit: illinois
+    button: |
+      **Illinois**:
+      ${ word(yesno(illinois)) }
+  - Edit: new_york
+    button: |
+      **New york**:
+      ${ word(yesno(new_york)) }
+  - Edit: washington
+    button: |
+      **Washington**:
+      ${ word(yesno(washington)) }
+  - Edit: iowa
+    button: |
+      **Iowa**:
+      ${ word(yesno(iowa)) }
+  - Edit: north_dakota
+    button: |
+      **North dakota**:
+      ${ word(yesno(north_dakota)) }
+  - Edit: indiana
+    button: |
+      **Indiana**:
+      ${ word(yesno(indiana)) }
+  - Edit: ohio
+    button: |
+      **Ohio**:
+      ${ word(yesno(ohio)) }
+  - Edit: wisconsin
+    button: |
+      **Wisconsin**:
+      ${ word(yesno(wisconsin)) }
+  - Edit: maryland
+    button: |
+      **Maryland**:
+      ${ word(yesno(maryland)) }
+  - Edit: signature_date_10
+    button: |
+      **Signature date 10**:
+      ${ signature_date_10 }
+  - Edit: signature_date_11
+    button: |
+      **Signature date 11**:
+      ${ signature_date_11 }
+  - Edit: franchisors_rep1_title_4
+    button: |
+      **Franchisors rep1 title 4**:
+      ${ franchisors_rep1_title_4 }
+  - Edit: franchisees1_name_full_6
+    button: |
+      **Franchisees1 name full 6**:
+      ${ franchisees1_name_full_6 }
+  - Edit: users1_title_4
+    button: |
+      **Users1 title 4**:
+      ${ users1_title_4 }
+  - Edit: signature_date_12
+    button: |
+      **Signature date 12**:
+      ${ signature_date_12 }
+  - Edit: users1_name_full_4
+    button: |
+      **Users1 name full 4**:
+      ${ users1_name_full_4 }
+  - Edit: franchisees1_name_full_7
+    button: |
+      **Franchisees1 name full 7**:
+      ${ franchisees1_name_full_7 }
+  - Edit: franchisees1_business_number
+    button: |
+      **Franchisees1 business number**:
+      ${ franchisees1_business_number }
+  - Edit: franchisee_owners1_contact_info
+    button: |
+      **Franchisee owners1 contact info**:
+      ${ franchisee_owners1_contact_info }
+  - Edit: bank1_name
+    button: |
+      **Bank1 name**:
+      ${ bank1_name }
+  - Edit: bank1_address
+    button: |
+      **Bank1 address**:
+      ${ bank1_address }
+  - Edit: bank1_routing_number
+    button: |
+      **Bank1 routing number**:
+      ${ bank1_routing_number }
+  - Edit: bank1_account_number
+    button: |
+      **Bank1 account number**:
+      ${ bank1_account_number }
+  - Edit: savings_account
+    button: |
+      **Savings account**:
+      ${ word(yesno(savings_account)) }
+  - Edit: checking_account
+    button: |
+      **Checking account**:
+      ${ word(yesno(checking_account)) }
+  - Edit: bank1_phone_number
+    button: |
+      **Bank1 phone number**:
+      ${ bank1_phone_number }
+  - Edit: signature_date_13
+    button: |
+      **Signature date 13**:
+      ${ signature_date_13 }
+  - Edit: users1_name_full_5
+    button: |
+      **Users1 name full 5**:
+      ${ users1_name_full_5 }
+  - Edit: users1_title_5
+    button: |
+      **Users1 title 5**:
+      ${ users1_title_5 }
+  - Edit: fed_tax_id_number
+    button: |
+      **Fed tax id number**:
+      ${ fed_tax_id_number }
+  - Edit: users.revisit
+    button: |
+      **Users**
+
+      % for item in users:
+        * ${ item }
+      % endfor
+  - Edit: signature_date
+    button: |
+      **signature_date**:
+      ${ signature_date }
+  - Edit: franchisee_managers.revisit
+    button: |
+      **Franchisee managers**
+
+      % for item in franchisee_managers:
+        * ${ item }
+      % endfor
+  - Edit: franchisee_owners.revisit
+    button: |
+      **Franchisee owners**
+
+      % for item in franchisee_owners:
+        * ${ item }
+      % endfor
+  - Edit: franchisees.revisit
+    button: |
+      **Franchisees**
+
+      % for item in franchisees:
+        * ${ item }
+      % endfor
+  - Edit: franchisors_rep.revisit
+    button: |
+      **Franchisors rep**
+
+      % for item in franchisors_rep:
+        * ${ item }
+      % endfor
+  - Edit: initials_1
+    button: |
+      **initials_1**:
+      ${ initials_1 }
+  - Edit: initials_2
+    button: |
+      **initials_2**:
+      ${ initials_2 }
+  - Edit: initials_3
+    button: |
+      **initials_3**:
+      ${ initials_3 }
+  - Edit: initials_4
+    button: |
+      **initials_4**:
+      ${ initials_4 }
+  - Edit: franchisors_rep1_signature_1
+    button: |
+      **franchisors_rep1_signature_1**:
+      ${ franchisors_rep1_signature_1 }
+  - Edit: users1_signature_1
+    button: |
+      **users1_signature_1**:
+      ${ users1_signature_1 }
+  - Edit: franchisors_rep1_signature_2
+    button: |
+      **franchisors_rep1_signature_2**:
+      ${ franchisors_rep1_signature_2 }
+  - Edit: users1_signature_2
+    button: |
+      **users1_signature_2**:
+      ${ users1_signature_2 }
+  - Edit: users1_signature_3
+    button: |
+      **users1_signature_3**:
+      ${ users1_signature_3 }
+  - Edit: franchisee_owners1_signature
+    button: |
+      **franchisee_owners1_signature**:
+      ${ franchisee_owners1_signature }
+  - Edit: franchisee_owners2_signature
+    button: |
+      **franchisee_owners2_signature**:
+      ${ franchisee_owners2_signature }
+  - Edit: franchisee_owners3_signature
+    button: |
+      **franchisee_owners3_signature**:
+      ${ franchisee_owners3_signature }
+  - Edit: franchisee_owners4_signature
+    button: |
+      **franchisee_owners4_signature**:
+      ${ franchisee_owners4_signature }
+  - Edit: franchisee_owners5_signature
+    button: |
+      **franchisee_owners5_signature**:
+      ${ franchisee_owners5_signature }
+  - Edit: franchisee_owners6_signature
+    button: |
+      **franchisee_owners6_signature**:
+      ${ franchisee_owners6_signature }
+  - Edit: franchisee_owners7_signature
+    button: |
+      **franchisee_owners7_signature**:
+      ${ franchisee_owners7_signature }
+  - Edit: franchisee_owners8_signature
+    button: |
+      **franchisee_owners8_signature**:
+      ${ franchisee_owners8_signature }
+  - Edit: franchisors_rep1_signature_3
+    button: |
+      **franchisors_rep1_signature_3**:
+      ${ franchisors_rep1_signature_3 }
+  - Edit: franchisors_rep1_signature_4
+    button: |
+      **franchisors_rep1_signature_4**:
+      ${ franchisors_rep1_signature_4 }
+  - Edit: users1_signature_4
+    button: |
+      **users1_signature_4**:
+      ${ users1_signature_4 }
+  - Edit: users1_signature_5
+    button: |
+      **users1_signature_5**:
+      ${ users1_signature_5 }
+  - Edit: users1_signature_6
+    button: |
+      **users1_signature_6**:
+      ${ users1_signature_6 }
+---
+continue button field: users.revisit
+question: |
+  Edit users
+subquestion: |
+  ${ users.table }
+
+  ${ users.add_action() }
+---
+table: users.table
+rows: users
+columns:
+  - Signature: |
+      row_item.signature if defined("row_item.signature") else ""
+  - Name: |
+      row_item.name.full() if defined("row_item.name.first") else ""
+edit:
+  - signature
+  - name.first
+confirm: True
+
+---
+continue button field: franchisee_managers.revisit
+question: |
+  Edit franchisee_managers
+subquestion: |
+  ${ franchisee_managers.table }
+
+  ${ franchisee_managers.add_action() }
+---
+table: franchisee_managers.table
+rows: franchisee_managers
+columns:
+  - Name: |
+      row_item.name.full() if defined("row_item.name.first") else ""
+edit:
+  - name.first
+confirm: True
+
+---
+continue button field: franchisee_owners.revisit
+question: |
+  Edit franchisee_owners
+subquestion: |
+  ${ franchisee_owners.table }
+
+  ${ franchisee_owners.add_action() }
+---
+table: franchisee_owners.table
+rows: franchisee_owners
+columns:
+  - Name: |
+      row_item.name.full() if defined("row_item.name.first") else ""
+  - Email: |
+      row_item.email if defined("row_item.email") else ""
+edit:
+  - name.first
+  - email
+confirm: True
+
+---
+continue button field: franchisees.revisit
+question: |
+  Edit franchisees
+subquestion: |
+  ${ franchisees.table }
+
+  ${ franchisees.add_action() }
+---
+table: franchisees.table
+rows: franchisees
+columns:
+  - Address: |
+      row_item.address.block() if defined("row_item.address.address") else ""
+  - Phone number: |
+      row_item.phone_number if defined("row_item.phone_number") else ""
+  - Name: |
+      row_item.name.full() if defined("row_item.name.first") else ""
+edit:
+  - address.address
+  - phone_number
+  - name.first
+confirm: True
+
+---
+continue button field: franchisors_rep.revisit
+question: |
+  Edit franchisors_rep
+subquestion: |
+  ${ franchisors_rep.table }
+
+  ${ franchisors_rep.add_action() }
+---
+table: franchisors_rep.table
+rows: franchisors_rep
+columns:
+  - Name: |
+      row_item.name.full() if defined("row_item.name.first") else ""
+  - Signature: |
+      row_item.signature if defined("row_item.signature") else ""
+edit:
+  - name.first
+  - signature
+confirm: True
+
+---
+continue button field: owners.revisit
+question: |
+  Edit owners
+subquestion: |
+  ${ owners.table }
+
+  ${ owners.add_action() }
+---
+table: owners.table
+rows: owners
+columns:
+  - Signature: |
+      row_item.signature if defined("row_item.signature") else ""
+edit:
+  - signature
+confirm: True
+
+---
