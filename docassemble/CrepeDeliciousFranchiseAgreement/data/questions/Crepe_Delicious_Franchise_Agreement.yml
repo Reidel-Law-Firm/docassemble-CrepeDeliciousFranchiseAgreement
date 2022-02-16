@@ -214,7 +214,6 @@ fields:
       - "Wisconsin": wisconsin
       - "Maryland": maryland
     show if: applicable_addenda
-
 ---
 id: Bank info
 question: |
@@ -428,65 +427,63 @@ attachments:
       - "users2_name_full": ${ users[1] }
       - "users2_title": ${ users[1].title }
       - "franchisee_managers1_name_full": ${ franchisee_managers[0] }
+      - "franchisee_managers1_address": ${ franchisee_managers1_address }
+      - "franchisee_managers1_title": ${ franchisee_managers1_title }
       - "franchisee_managers2_name_full": ${ franchisee_managers[1] }
+      - "franchisee_managers2_address": ${ franchisee_managers2_address }
+      - "franchisee_managers2_title": ${ franchisee_managers2_title }
       - "franchisee_managers3_name_full": ${ franchisee_managers[2] }
+      - "franchisee_managers3_address": ${ franchisee_managers3_address }
+      - "franchisee_managers3_title": ${ franchisee_managers3_title }
       - "franchisee_managers4_name_full": ${ franchisee_managers[3] }
-
+      - "franchisee_managers4_address": ${ franchisee_managers4_address }
+      - "franchisee_managers4_title": ${ franchisee_managers4_title }
       - "franchisee_owners1_name_full": ${ franchisee_owners[0] }
+      - "franchisee_owners1_address": ${ franchisee_owners[0].address }
+      - "franchisee_owners1_percentage": ${ franchisee_owners[0].percentage }
       - "franchisee_owners2_name_full": ${ franchisee_owners[1] }
-
+      - "franchisee_owners2_address": ${ franchisee_owners[1].address }
+      - "franchisee_owners2_percentage": ${ franchisee_owners[1].percentage }
       - "franchisee_owners3_name_full": ${ franchisee_owners[2] }
+      - "franchisee_owners3_address": ${ franchisee_owners[2].address }
+      - "franchisee_owners3_percentage": ${ franchisee_owners[2].percentage }
       - "franchisee_owners4_name_full": ${ franchisee_owners[3] }
-
-      - "franchisees1_address_line_two": ${ franchisees[0].address.line_two() }
-      - "franchisees1_phone_number": ${ franchisees[0].phone_number }
+      - "franchisee_owners4_address": ${ franchisee_owners[3].address }
+      - "franchisee_owners4_percentage": ${ franchisee_owners[3].percentage }
       - "franchisee_owners1_email": ${ franchisee_owners[0].email }
+      - "franchisee_owners1_contact_info": ${ franchisee_owners1_contact_info }
       - "franchisees1_name_full": ${ franchisees[0] }
-      - "franchisees1_address_line_one": ${ franchisees[0].address.line_one() }
-      - "franchisors_rep1_name_full": ${ franchisors_rep[0] }
-      - "franchisors_rep1_signature": ${ franchisors_rep[0].signature_if_final(i) }
-      - "franchisees1_identifier": ${ franchisees_identifier }
-      - "territory": ${ territory }
       - "franchisees1_name_full_1": ${ franchisees[0] }
       - "franchisees1_name_full_2": ${ franchisees[0] }
-
-      - "franchisees1_address": ${ franchisees1_address }
-      - "franchisors_rep1_title": ${ franchisors_rep1_title }
-      - "area_description": ${ general_area }
-      - "franchisors_rep1_name_full_1": ${ franchisors_rep1_name_full_1 }
-      - "franchisors_rep1_title_1": ${ franchisors_rep1_title_1 }
-      - "approved_location": ${ approved_location_address }
-      - "territory_1": ${ territory }
-      - "franchisees1_name_full_2": ${ franchisees[0] }
-      - "franchisors_rep1_title_2": ${ franchisors_rep1_title_2 }
-      - "franchisors_rep1_title_2": ${ franchisors_rep1_title_2 }
       - "franchisees1_name_full_3": ${ franchisees[0] }
+      - "franchisees1_name_full_4": ${ franchisees[0] }
+      - "franchisees1_name_full_5": ${ franchisees[0] }
+      - "franchisees1_name_full_6": ${ franchisees[0] }
+      - "franchisees1_name_full_7": ${ franchisees[0] }
+      - "franchisees1_address": ${ franchisees1_address }
+      - "franchisees1_address_line_one": ${ franchisees[0].address.line_one() }
+      - "franchisees1_address_line_two": ${ franchisees[0].address.line_two() }
+      - "franchisees1_phone_number": ${ franchisees[0].phone_number }
+      - "franchisees1_identifier": ${ franchisees_identifier }
+      - "franchisees1_business_number": ${ franchisees_business_number }
+      - "franchisors_rep1_name_full": ${ franchisors_rep[0] }
+      - "franchisors_rep1_name_full_1": ${ franchisors_rep[0] }
+      - "franchisors_rep1_name_full_2": ${ franchisors_rep[0] }
+      - "franchisors_rep1_title": ${ franchisors_rep[0].title }
+      - "franchisors_rep1_title_1": ${ franchisors_rep[0].title }
+      - "franchisors_rep1_title_2": ${ franchisors_rep[0].title }
+      - "franchisors_rep1_title_3": ${ franchisors_rep[0].title }
+      - "franchisors_rep1_title_4": ${ franchisors_rep[0].title }
+      - "franchisors_rep1_signature": ${ franchisors_rep[0].signature_if_final(i) }
+      - "territory": ${ territory }
+      - "territory_1": ${ territory }
+      - "area_description": ${ general_area }
+      - "approved_location": ${ approved_location_address }
       - "franchisees1_partnership": ${ ownership_form == "partnership" }
       - "franchisees1_corporation": ${ ownership_form == "corporation" }
       - "franchisees1_llc": ${ ownership_form == "llc" }
       - "franchisees1_individual": ${ ownership_form == "individual" }
       - "city_and_state_of_formation": ${ city_and_state_of_formation }
-      - "franchisee_managers1_address": ${ franchisee_managers1_address }
-      - "franchisee_managers1_title": ${ franchisee_managers1_title }
-      - "franchisee_managers2_address": ${ franchisee_managers2_address }
-      - "franchisee_managers2_title": ${ franchisee_managers2_title }
-      - "franchisee_managers3_address": ${ franchisee_managers3_address }
-      - "franchisee_managers3_title": ${ franchisee_managers3_title }
-      - "franchisee_managers4_address": ${ franchisee_managers4_address }
-      - "franchisee_managers4_title": ${ franchisee_managers4_title }
-      - "franchisee_owners1_address": ${ franchisee_owners1_address }
-      - "franchisee_owners1_percentage": ${ franchisee_owners1_percentage }
-      - "franchisee_owners2_address": ${ franchisee_owners2_address }
-      - "franchisee_owners2_percentage": ${ franchisee_owners2_percentage }
-      - "franchisee_owners3_address": ${ franchisee_owners3_address }
-      - "franchisee_owners3_percentage": ${ franchisee_owners3_percentage }
-      - "franchisee_owners4_address": ${ franchisee_owners4_address }
-      - "franchisee_owners4_percentage": ${ franchisee_owners4_percentage }
-      - "franchisees1_name_full_4": ${ franchisees[0] }
-      - "franchisees1_name_full_5": ${ franchisees[0] }
-
-      - "franchisors_rep1_title_3": ${ franchisors_rep1_title_3 }
-
       - "california": ${ addenda['california'] }
       - "michigan": ${ addenda['michigan'] }
       - "rhode_island": ${ addenda['rhode_island'] }
@@ -503,13 +500,6 @@ attachments:
       - "ohio": ${ addenda['ohio'] }
       - "wisconsin": ${ addenda['wisconsin'] }
       - "maryland": ${ addenda['maryland'] }
-
-      - "franchisors_rep1_title_4": ${ franchisors_rep1_title_4 }
-      - "franchisees1_name_full_6": ${ franchisees[0] }
-
-      - "franchisees1_name_full_7": ${ franchisees[0] }
-      - "franchisees1_business_number": ${ franchisees_business_number }
-      - "franchisee_owners1_contact_info": ${ franchisee_owners1_contact_info }
       - "bank1_name": ${ bank_name }
       - "bank1_address": ${ bank_address }
       - "bank1_routing_number": ${ bank_routing_number }
@@ -518,7 +508,6 @@ attachments:
       - "checking_account": ${ account == "checking_account" }
       - "bank1_phone_number": ${ bank_phone_number }
       - "fed_tax_id_number": ${ fed_tax_id_number }
-
       - "signature_date": ${ today() }
       - "signature_date_2": ${ today() }
       - "signature_date_3": ${ today() }
@@ -532,31 +521,23 @@ attachments:
       - "signature_date_11": ${ today() }
       - "signature_date_12": ${ today() }
       - "signature_date_13": ${ today() }
-
-      
       - "date_of_signing": ${ today() }
-
-
       - "users1_signature_1": ${ users[0].signature_if_final(i) }
       - "users1_signature_2": ${ users[0].signature_if_final(i) }
       - "users1_signature_3": ${ users[0].signature_if_final(i) }
       - "users1_signature_4": ${ users[0].signature_if_final(i) }
       - "users1_signature_5": ${ users[0].signature_if_final(i) }
       - "users1_signature_6": ${ users[0].signature_if_final(i) }
-
       - "users1_signature": ${ users[0].signature_if_final(i) }
       - "users2_signature": ${ users[1].signature_if_final(i) }
-      
       - "initials_1": ${ franchisees[0].signature_if_final(i) }
       - "initials_2": ${ franchisees[0].signature_if_final(i) }
       - "initials_3": ${ franchisees[0].signature_if_final(i) }
       - "initials_4": ${ franchisees[0].signature_if_final(i) }
-      
       - "franchisors_rep1_signature_1": ${ franchisors_rep[0].signature_if_final(i) }
       - "franchisors_rep1_signature_2": ${ franchisors_rep[0].signature_if_final(i) }
       - "franchisors_rep1_signature_3": ${ franchisors_rep[0].signature_if_final(i) }
       - "franchisors_rep1_signature_4": ${ franchisors_rep[0].signature_if_final(i) }
- 
       - "franchisee_owners1_signature": ${ franchisee_owners[0].signature_if_final(i) }
       - "franchisee_owners2_signature": ${ franchisee_owners[1].signature_if_final(i) }
       - "franchisee_owners3_signature": ${ franchisee_owners[2].signature_if_final(i) }
