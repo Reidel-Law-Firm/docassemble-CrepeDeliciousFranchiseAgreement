@@ -279,24 +279,6 @@ fields:
   - "no label": city_and_state_of_formation
     maxlength: 98
 ---
-id: Franchisors Rep Info
-question: |
-  Franchisors Rep Info
-fields:
-  - "Franchisors Title": franchisors_rep1_title
-    maxlength: 31
-  - "Franchisors rep1 name full 1": franchisors_rep1_name_full_1
-    maxlength: 24
----
-id: Franchisee Managers
-question: |
-  Franchisee Managers
-fields:
-  - "Franchisee managers1 address": franchisee_managers1_address
-    maxlength: 26
-  - "Franchisee managers1 title": franchisee_managers1_title
-    maxlength: 26
----
 id: Franchisee Owners
 generic object: ALIndividual
 question: |
@@ -431,51 +413,53 @@ attachments:
     skip undefined: True
     pdf template file: Crepe_Delicious_FA_-_Interview_Template.pdf
     fields:
-      - "users1_signature": ${ users[0].signature_if_final(i) }
       - "users1_name_full": ${ users[0] }
-      - "users2_signature": ${ users[1].signature_if_final(i) }
+      - "users1_name_full_1": ${ users[0] }
+      - "users1_name_full_2": ${ users[0] }
+      - "users1_name_full_3": ${ users[0] }
+      - "users1_name_full_4": ${ users[0] }
+      - "users1_name_full_5": ${ users[0] }
+      - "users1_title": ${ users[0].title }
+      - "users1_title_1": ${ users[0].title }
+      - "users1_title_2": ${ users[0].title }
+      - "users1_title_3": ${ users[0].title }
+      - "users1_title_4": ${ users[0].title }
+      - "users1_title_5": ${ users[0].title }
       - "users2_name_full": ${ users[1] }
-      - "signature_date": ${ today() }
-      - "franchisee_managers2_name_full": ${ franchisee_managers[1] }
-      - "franchisee_owners3_name_full": ${ franchisee_owners[2] }
-      - "franchisee_owners1_name_full": ${ franchisee_owners[0] }
-      - "franchisee_managers3_name_full": ${ franchisee_managers[2] }
-      - "franchisees1_address_line_two": ${ franchisees[0].address.line_two() }
-      - "franchisee_managers4_name_full": ${ franchisee_managers[3] }
-      - "franchisees1_phone_number": ${ franchisees[0].phone_number }
+      - "users2_title": ${ users[1].title }
       - "franchisee_managers1_name_full": ${ franchisee_managers[0] }
+      - "franchisee_managers2_name_full": ${ franchisee_managers[1] }
+      - "franchisee_managers3_name_full": ${ franchisee_managers[2] }
+      - "franchisee_managers4_name_full": ${ franchisee_managers[3] }
+
+      - "franchisee_owners1_name_full": ${ franchisee_owners[0] }
+      - "franchisee_owners2_name_full": ${ franchisee_owners[1] }
+
+      - "franchisee_owners3_name_full": ${ franchisee_owners[2] }
       - "franchisee_owners4_name_full": ${ franchisee_owners[3] }
+
+      - "franchisees1_address_line_two": ${ franchisees[0].address.line_two() }
+      - "franchisees1_phone_number": ${ franchisees[0].phone_number }
       - "franchisee_owners1_email": ${ franchisee_owners[0].email }
       - "franchisees1_name_full": ${ franchisees[0] }
-      - "franchisee_owners2_name_full": ${ franchisee_owners[1] }
       - "franchisees1_address_line_one": ${ franchisees[0].address.line_one() }
       - "franchisors_rep1_name_full": ${ franchisors_rep[0] }
       - "franchisors_rep1_signature": ${ franchisors_rep[0].signature_if_final(i) }
       - "franchisees1_identifier": ${ franchisees_identifier }
-      - "date_of_signing": ${ today() }
       - "territory": ${ territory }
       - "franchisees1_name_full_1": ${ franchisees[0] }
       - "franchisees1_name_full_2": ${ franchisees[0] }
-      - "users1_title": ${ users[0].title }
-      - "users2_title": ${ users[1].title }
+
       - "franchisees1_address": ${ franchisees1_address }
       - "franchisors_rep1_title": ${ franchisors_rep1_title }
-      - "signature_date_2": ${ today() }
       - "area_description": ${ general_area }
       - "franchisors_rep1_name_full_1": ${ franchisors_rep1_name_full_1 }
-      - "users1_name_full_1": ${ users[0] }
       - "franchisors_rep1_title_1": ${ franchisors_rep1_title_1 }
-      - "users1_title_1": ${ users[0].title }
       - "approved_location": ${ approved_location_address }
       - "territory_1": ${ territory }
       - "franchisees1_name_full_2": ${ franchisees[0] }
       - "franchisors_rep1_title_2": ${ franchisors_rep1_title_2 }
       - "franchisors_rep1_title_2": ${ franchisors_rep1_title_2 }
-      - "users1_name_full_2": ${ users[0] }
-      - "users1_title_2": ${ users[1].title }
-      - "users1_title_2": ${ users[1].title }
-      - "signature_date_3": ${ today() }
-      - "signature_date_4": ${ today() }
       - "franchisees1_name_full_3": ${ franchisees[0] }
       - "franchisees1_partnership": ${ ownership_form == "partnership" }
       - "franchisees1_corporation": ${ ownership_form == "corporation" }
@@ -499,14 +483,10 @@ attachments:
       - "franchisee_owners4_address": ${ franchisee_owners4_address }
       - "franchisee_owners4_percentage": ${ franchisee_owners4_percentage }
       - "franchisees1_name_full_4": ${ franchisees[0] }
-      - "users1_name_full_3": ${ users[0] }
-      - "signature_date_5": ${ today() }
       - "franchisees1_name_full_5": ${ franchisees[0] }
-      - "signature_date_7": ${ today() }
-      - "signature_date_6": ${ today() }
+
       - "franchisors_rep1_title_3": ${ franchisors_rep1_title_3 }
-      - "signature_date_9": ${ today() }
-      - "signature_date_8": ${ today() }
+
       - "california": ${ addenda['california'] }
       - "michigan": ${ addenda['michigan'] }
       - "rhode_island": ${ addenda['rhode_island'] }
@@ -523,13 +503,10 @@ attachments:
       - "ohio": ${ addenda['ohio'] }
       - "wisconsin": ${ addenda['wisconsin'] }
       - "maryland": ${ addenda['maryland'] }
-      - "signature_date_10": ${ today() }
-      - "signature_date_11": ${ today() }
+
       - "franchisors_rep1_title_4": ${ franchisors_rep1_title_4 }
       - "franchisees1_name_full_6": ${ franchisees[0] }
-      - "users1_title_4": ${ users1_title_4 }
-      - "signature_date_12": ${ today() }
-      - "users1_name_full_4": ${ users[0] }
+
       - "franchisees1_name_full_7": ${ franchisees[0] }
       - "franchisees1_business_number": ${ franchisees_business_number }
       - "franchisee_owners1_contact_info": ${ franchisee_owners1_contact_info }
@@ -540,51 +517,51 @@ attachments:
       - "savings_account": ${ account == "savings_account" }
       - "checking_account": ${ account == "checking_account" }
       - "bank1_phone_number": ${ bank_phone_number }
-      - "signature_date_13": ${ today() }
-      - "users1_name_full_5": ${ users[0] }
-      - "users1_title_5": ${ users[0].title }
       - "fed_tax_id_number": ${ fed_tax_id_number }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "initials_1": ${ initials_1 if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "initials_2": ${ initials_2 if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "initials_3": ${ initials_3 if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "initials_4": ${ initials_4 if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "franchisors_rep1_signature_1": ${ franchisors_rep1_signature_1 if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "users1_signature_1": ${ users1_signature_1 if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "franchisors_rep1_signature_2": ${ franchisors_rep1_signature_2 if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "users1_signature_2": ${ users1_signature_2 if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "users1_signature_3": ${ users1_signature_3 if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "franchisee_owners1_signature": ${ franchisee_owners1_signature if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "franchisee_owners2_signature": ${ franchisee_owners2_signature if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "franchisee_owners3_signature": ${ franchisee_owners3_signature if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "franchisee_owners4_signature": ${ franchisee_owners4_signature if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "franchisee_owners5_signature": ${ franchisee_owners5_signature if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "franchisee_owners6_signature": ${ franchisee_owners6_signature if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "franchisee_owners7_signature": ${ franchisee_owners7_signature if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "franchisee_owners8_signature": ${ franchisee_owners8_signature if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "franchisors_rep1_signature_3": ${ franchisors_rep1_signature_3 if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "franchisors_rep1_signature_4": ${ franchisors_rep1_signature_4 if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "users1_signature_4": ${ users1_signature_4 if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "users1_signature_5": ${ users1_signature_5 if i == 'final' else '' }
-      # It's a signature: test which file version this is; leave empty unless it's the final version)
-      - "users1_signature_6": ${ users1_signature_6 if i == 'final' else '' }
+
+      - "signature_date": ${ today() }
+      - "signature_date_2": ${ today() }
+      - "signature_date_3": ${ today() }
+      - "signature_date_4": ${ today() }
+      - "signature_date_5": ${ today() }
+      - "signature_date_6": ${ today() }
+      - "signature_date_7": ${ today() }
+      - "signature_date_8": ${ today() }
+      - "signature_date_9": ${ today() }
+      - "signature_date_10": ${ today() }
+      - "signature_date_11": ${ today() }
+      - "signature_date_12": ${ today() }
+      - "signature_date_13": ${ today() }
+
+      
+      - "date_of_signing": ${ today() }
+
+
+      - "users1_signature_1": ${ users[0].signature_if_final(i) }
+      - "users1_signature_2": ${ users[0].signature_if_final(i) }
+      - "users1_signature_3": ${ users[0].signature_if_final(i) }
+      - "users1_signature_4": ${ users[0].signature_if_final(i) }
+      - "users1_signature_5": ${ users[0].signature_if_final(i) }
+      - "users1_signature_6": ${ users[0].signature_if_final(i) }
+
+      - "users1_signature": ${ users[0].signature_if_final(i) }
+      - "users2_signature": ${ users[1].signature_if_final(i) }
+      
+      - "initials_1": ${ franchisees[0].signature_if_final(i) }
+      - "initials_2": ${ franchisees[0].signature_if_final(i) }
+      - "initials_3": ${ franchisees[0].signature_if_final(i) }
+      - "initials_4": ${ franchisees[0].signature_if_final(i) }
+      
+      - "franchisors_rep1_signature_1": ${ franchisors_rep[0].signature_if_final(i) }
+      - "franchisors_rep1_signature_2": ${ franchisors_rep[0].signature_if_final(i) }
+      - "franchisors_rep1_signature_3": ${ franchisors_rep[0].signature_if_final(i) }
+      - "franchisors_rep1_signature_4": ${ franchisors_rep[0].signature_if_final(i) }
+ 
+      - "franchisee_owners1_signature": ${ franchisee_owners[0].signature_if_final(i) }
+      - "franchisee_owners2_signature": ${ franchisee_owners[1].signature_if_final(i) }
+      - "franchisee_owners3_signature": ${ franchisee_owners[2].signature_if_final(i) }
+      - "franchisee_owners4_signature": ${ franchisee_owners[3].signature_if_final(i) }
+      - "franchisee_owners5_signature": ${ franchisee_owners[4].signature_if_final(i) }
+      - "franchisee_owners6_signature": ${ franchisee_owners[5].signature_if_final(i) }
+      - "franchisee_owners7_signature": ${ franchisee_owners[6].signature_if_final(i) }
+      - "franchisee_owners8_signature": ${ franchisee_owners[7].signature_if_final(i) }
