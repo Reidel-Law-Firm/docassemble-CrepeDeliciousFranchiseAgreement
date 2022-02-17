@@ -100,6 +100,7 @@ code: |
   
   set_progress(50)  
   franchisee_owners.gather(complete_attribute = "franchisee_owners_complete")
+  franchisee_owners_email
   
   set_progress(66)
   franchisee_managers.gather(complete_attribute = "franchisee_managers_complete") 
@@ -271,6 +272,12 @@ fields:
       - Individual: individual
       - LLC: llc
 ---
+id: franchisee owners contact info
+question: |
+  ${ franchisee_owners[0] }'s Contact Information
+fields:
+  - Email: franchisee_owners_email
+---
 id: City and state of formation
 question: |
   City and state of formation
@@ -427,17 +434,17 @@ attachments:
       - "users2_name_full": ${ users[1] }
       - "users2_title": ${ users[1].title }
       - "franchisee_managers1_name_full": ${ franchisee_managers[0] }
-      - "franchisee_managers1_address": ${ franchisee_managers1_address }
-      - "franchisee_managers1_title": ${ franchisee_managers1_title }
+      - "franchisee_managers1_address": ${ franchisee_managers[0].address }
+      - "franchisee_managers1_title": ${ franchisee_managers1[0].title }
       - "franchisee_managers2_name_full": ${ franchisee_managers[1] }
-      - "franchisee_managers2_address": ${ franchisee_managers2_address }
-      - "franchisee_managers2_title": ${ franchisee_managers2_title }
+      - "franchisee_managers2_address": ${ franchisee_managers[1].address }
+      - "franchisee_managers2_title": ${ franchisee_managers[1].title }
       - "franchisee_managers3_name_full": ${ franchisee_managers[2] }
-      - "franchisee_managers3_address": ${ franchisee_managers3_address }
-      - "franchisee_managers3_title": ${ franchisee_managers3_title }
+      - "franchisee_managers3_address": ${ franchisee_managers[2].address }
+      - "franchisee_managers3_title": ${ franchisee_managers[2].title }
       - "franchisee_managers4_name_full": ${ franchisee_managers[3] }
-      - "franchisee_managers4_address": ${ franchisee_managers4_address }
-      - "franchisee_managers4_title": ${ franchisee_managers4_title }
+      - "franchisee_managers4_address": ${ franchisee_managers[3].address }
+      - "franchisee_managers4_title": ${ franchisee_managers[3].title }
       - "franchisee_owners1_name_full": ${ franchisee_owners[0] }
       - "franchisee_owners1_address": ${ franchisee_owners[0].address }
       - "franchisee_owners1_percentage": ${ franchisee_owners[0].percentage }
@@ -450,8 +457,7 @@ attachments:
       - "franchisee_owners4_name_full": ${ franchisee_owners[3] }
       - "franchisee_owners4_address": ${ franchisee_owners[3].address }
       - "franchisee_owners4_percentage": ${ franchisee_owners[3].percentage }
-      - "franchisee_owners1_email": ${ franchisee_owners[0].email }
-      - "franchisee_owners1_contact_info": ${ franchisee_owners1_contact_info }
+      - "franchisee_owners1_email": ${ franchisee_owners_email }
       - "franchisees1_name_full": ${ franchisees[0] }
       - "franchisees1_name_full_1": ${ franchisees[0] }
       - "franchisees1_name_full_2": ${ franchisees[0] }
@@ -460,7 +466,7 @@ attachments:
       - "franchisees1_name_full_5": ${ franchisees[0] }
       - "franchisees1_name_full_6": ${ franchisees[0] }
       - "franchisees1_name_full_7": ${ franchisees[0] }
-      - "franchisees1_address": ${ franchisees1_address }
+      - "franchisees1_address": ${ franchisees[0].address }
       - "franchisees1_address_line_one": ${ franchisees[0].address.line_one() }
       - "franchisees1_address_line_two": ${ franchisees[0].address.line_two() }
       - "franchisees1_phone_number": ${ franchisees[0].phone_number }
