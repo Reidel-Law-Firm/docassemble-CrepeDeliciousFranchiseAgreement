@@ -94,13 +94,12 @@ code: |
   franchisees[0].phone_number
   franchisees_identifier
   ownership_form
-  city_and_state_of_formation
+  city
   if territory_known:
     approved_location_known
   
   set_progress(50)  
   franchisee_owners.gather(complete_attribute = "franchisee_owners_complete")
-  franchisee_owners_email
   
   set_progress(66)
   franchisee_managers.gather(complete_attribute = "franchisee_managers_complete") 
@@ -120,18 +119,13 @@ comment: |
   Delete mandatory: True to include in another interview
 mandatory: True
 code: |
-  #al_intro_screen
   Crepe_Delicious_Franchise_Agreement_intro
   interview_order_Crepe_Delicious_Franchise_Agreement
-  signature_date
+  #signature_date
   # Save anonymized interview statistics (customize the saved data below)
-  store_variables_snapshot(data={'zip': users[0].address.zip})
+  #store_variables_snapshot(data={'zip': users[0].address.zip})
   Crepe_Delicious_Franchise_Agreement_preview_question
-  #basic_questions_signature_flow
-  #franchisors_rep[0].signature
-  #owners[0].signature
-  #users[1].signature
-  #users[0].signature
+  basic_questions_signature_flow
   Crepe_Delicious_Franchise_Agreement_download
 ---
 comment: |
@@ -282,8 +276,9 @@ id: City and state of formation
 question: |
   City and state of formation
 fields:
-  - "no label": city_and_state_of_formation
-    maxlength: 98
+  - City: city
+  - State: state
+    code: states_list()
 ---
 id: Franchisee Owners
 generic object: ALIndividual
@@ -300,6 +295,8 @@ code: |
   x.name.first
   x.address.address
   x.percentage
+  if franchisee_owners[0]:
+    franchisee_owners_email
   x.franchisee_owners_complete = True
 ---
 generic object: ALIndividual
@@ -363,9 +360,9 @@ yesno: x.there_is_another
 ---
 id: preview Crepe_Delicious_Franchise_Agreement
 question: |
-  Preview your form before you sign it
+  Preview the form before signing
 subquestion: |
-  Here is a preview of the form you will sign on the next page.   
+  Here is a preview of the form.   
   
   ${ al_recipient_bundle.as_pdf(key='preview') }
 
@@ -377,8 +374,25 @@ subquestion: |
   Remember to come back to this window to continue and sign your form.
 continue button field: Crepe_Delicious_Franchise_Agreement_preview_question    
 ---
+id: ready to sign
+generic object: ALIndividual
+question: |
+  Is ${x} ready to sign?
+yesno: x.ready_to_sign
+---
+id: persons signature
+generic object: ALIndividual
+question: |
+  ${x}, please sign below
+subquestion: |
+  You can select "Next" and have ${x} sign later.
+signature: x.signature
+required: False
+under: |
+  ${x}
+---
 code: |
-  signature_fields = ['franchisors_rep[0].signature', 'users[1].signature', 'users[0].signature', 'initials_1', 'initials_2', 'initials_3', 'initials_4', 'franchisors_rep1_signature_1', 'users1_signature_1', 'franchisors_rep1_signature_2', 'users1_signature_2', 'users1_signature_3', 'franchisee_owners1_signature', 'franchisee_owners2_signature', 'franchisee_owners3_signature', 'franchisee_owners4_signature', 'franchisee_owners5_signature', 'franchisee_owners6_signature', 'franchisee_owners7_signature', 'franchisee_owners8_signature', 'franchisors_rep1_signature_3', 'franchisors_rep1_signature_4', 'users1_signature_4', 'users1_signature_5', 'users1_signature_6']
+    signature_fields = [sig.attr_name('signature') for sig in users if sig.ready_to_sign] + [sig.attr_name('signature') for sig in franchisors_rep if sig.ready_to_sign] + [sig.attr_name('signature') for sig in franchisees if sig.ready_to_sign] + [sig.attr_name('signature') for sig in franchisee_owners if sig.ready_to_sign]
 ---
 id: download Crepe_Delicious_Franchise_Agreement
 event: Crepe_Delicious_Franchise_Agreement_download
@@ -404,15 +418,10 @@ objects:
   - Crepe_Delicious_Franchise_Agreement_attachment: ALDocument.using(title="Crepe Delicious Franchise Agreement", filename="Crepe_Delicious_FA_-_Interview_Template.pdf", enabled=True, has_addendum=False, default_overflow_message=AL_DEFAULT_OVERFLOW_MESSAGE)
 ---
 objects:
-  - al_user_bundle: ALDocumentBundle.using(elements=[Crepe_Delicious_Franchise_Agreement_post_interview_instructions,Crepe_Delicious_Franchise_Agreement_attachment], filename="Crepe_Delicious_Franchise_Agreement_package.pdf", title="All forms to download for your records", enabled=True)
+  - al_user_bundle: ALDocumentBundle.using(elements=[Crepe_Delicious_Franchise_Agreement_attachment], filename="Crepe_Delicious_Franchise_Agreement_package.pdf", title="All forms to download for your records", enabled=True)
   - al_recipient_bundle: ALDocumentBundle.using(elements=[Crepe_Delicious_Franchise_Agreement_attachment], filename="Crepe_Delicious_Franchise_Agreement_package.pdf", title="All forms to download for your records", enabled=True)
 ---
 attachments:
-  - name: Crepe Delicious Franchise Agreement post interview instructions
-    filename: Post-interview-instructions     
-    variable name: Crepe_Delicious_Franchise_Agreement_post_interview_instructions[i]        
-    skip undefined: True
-    docx template file: Crepe_Delicious_Franchise_Agreement_next_steps.docx
   - name: Crepe Delicious Franchise Agreement attachment
     filename: Crepe_Delicious_Franchise_Agreement     
     variable name: Crepe_Delicious_Franchise_Agreement_attachment[i]        
@@ -489,23 +498,23 @@ attachments:
       - "franchisees1_corporation": ${ ownership_form == "corporation" }
       - "franchisees1_llc": ${ ownership_form == "llc" }
       - "franchisees1_individual": ${ ownership_form == "individual" }
-      - "city_and_state_of_formation": ${ city_and_state_of_formation }
-      - "california": ${ addenda['california'] }
-      - "michigan": ${ addenda['michigan'] }
-      - "rhode_island": ${ addenda['rhode_island'] }
-      - "minnesota": ${ addenda['minnesota'] }
-      - "hawaii": ${ addenda['hawaii'] }
-      - "south_dakota": ${ addenda['south_dakota'] }
-      - "virginia": ${ addenda['virginia'] }
-      - "illinois": ${ addenda['illinois'] }
-      - "new_york": ${ addenda['new_york'] }
-      - "washington": ${ addenda['washington'] }
-      - "iowa": ${ addenda['iowa'] }
-      - "north_dakota": ${ addenda['north_dakota'] }
-      - "indiana": ${ addenda['indiana'] }
-      - "ohio": ${ addenda['ohio'] }
-      - "wisconsin": ${ addenda['wisconsin'] }
-      - "maryland": ${ addenda['maryland'] }
+      - "city_and_state_of_formation": ${ city + ", " + state }
+      - "california": ${ addenda == "california" }
+      - "michigan": ${ addenda == "michigan" }
+      - "rhode_island": ${ addenda == "rhode_island" }
+      - "minnesota": ${ addenda == "minnesota" }
+      - "hawaii": ${ addenda == "hawaii" }
+      - "south_dakota": ${ addenda == "south_dakota" }
+      - "virginia": ${ addenda == "virginia" }
+      - "illinois": ${ addenda == "illinois" }
+      - "new_york": ${ addenda == "new_york" }
+      - "washington": ${ addenda == "washington" }
+      - "iowa": ${ addenda == "iowa" }
+      - "north_dakota": ${ addenda == "north_dakota" }
+      - "indiana": ${ addenda == "indiana" }
+      - "ohio": ${ addenda == "ohio" }
+      - "wisconsin": ${ addenda == "wisconsin" }
+      - "maryland": ${ addenda == "maryland" }
       - "bank1_name": ${ bank_name }
       - "bank1_address": ${ bank_address }
       - "bank1_routing_number": ${ bank_routing_number }
@@ -520,11 +529,11 @@ attachments:
       - "signature_date_4": ${ today() }
       - "signature_date_5": ${ today() }
       - "signature_date_6": ${ today() }
-      - "signature_date_7": ${ today() }
+      - "signature_date_7": ${ format_date(today(), format='yy') }
       - "signature_date_8": ${ today() }
-      - "signature_date_9": ${ today() }
+      - "signature_date_9": ${ format_date(today(), format='yy') }
       - "signature_date_10": ${ today() }
-      - "signature_date_11": ${ today() }
+      - "signature_date_11": ${ format_date(today(), format='yy') }
       - "signature_date_12": ${ today() }
       - "signature_date_13": ${ today() }
       - "date_of_signing": ${ today() }
