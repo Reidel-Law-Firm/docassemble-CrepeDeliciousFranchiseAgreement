@@ -108,7 +108,7 @@ code: |
   franchisors_rep.gather(number=1)
   
   set_progress(83)
-  addenda
+  applicable_addenda
   bank_name
   
   interview_order_Crepe_Delicious_Franchise_Agreement = True
@@ -394,6 +394,83 @@ under: |
 code: |
     signature_fields = [sig.attr_name('signature') for sig in users if sig.ready_to_sign] + [sig.attr_name('signature') for sig in franchisors_rep if sig.ready_to_sign] + [sig.attr_name('signature') for sig in franchisees if sig.ready_to_sign] + [sig.attr_name('signature') for sig in franchisee_owners if sig.ready_to_sign]
 ---
+# Triggers some questions to ask for signatures on either desktop or mobile
+# Allows sending via text/email
+id: basic questions signature flow control
+code: |
+  if started_on_phone:
+    saw_signature_choice = True
+    for user in users:
+      if user.ready_to_sign:
+        user.signature
+    for franchisor_rep in franchisors_rep:
+      if franchisor_rep.ready_to_sign:
+        franchisor_rep.signature
+    for franchisee in franchisees:
+      if franchisee.ready_to_sign:
+        franchisee.signature
+    for franchisee_owner in franchisee_owners:
+      if franchisee_owner.ready_to_sign:
+        franchisee_owner.signature
+    # Add in logic for when we need additional signatures
+  else: 
+    # Three branches:
+    # 1. Decided to sign on the PC
+    # 2. Sent someone a link to sign the form
+    # 3. Used the QR code
+    saw_signature_choice
+    # Branch 1: PC
+    if signature_choice =='this device':
+      for user in users:
+        if user.ready_to_sign:
+          user.signature
+      for franchisor_rep in franchisors_rep:
+        if franchisor_rep.ready_to_sign:
+          franchisor_rep.signature
+      for franchisee in franchisees:
+        if franchisee.ready_to_sign:
+          franchisee.signature
+      for franchisee_owner in franchisee_owners:
+        if franchisee_owner.ready_to_sign:
+          franchisee_owner.signature
+    # Check for Branch 2 or 3
+    elif signature_choice == 'phone':
+      saw_signature_qrcode
+      # User will click next. link_cell will only be defined if they chose the texting option
+      if defined('link_cell') and link_cell and task_not_yet_performed('send signature link'): 
+        # They used the text option
+        send_sms(task='send signature link', to=link_cell,template=interview_link)
+        signature_wait_screen
+        for user in users:
+          if user.ready_to_sign:
+            user.signature
+        for franchisor_rep in franchisors_rep:
+          if franchisor_rep.ready_to_sign:
+            franchisor_rep.signature
+        for franchisee in franchisees:
+          if franchisee.ready_to_sign:
+            franchisee.signature
+        for franchisee_owner in franchisee_owners:
+          if franchisee_owner.ready_to_sign:
+            franchisee_owner.signature     
+      else: # Branch 3: They used the QR Code. No special screen, just continue
+        for user in users:
+          if user.ready_to_sign:
+            user.signature
+        for franchisor_rep in franchisors_rep:
+          if franchisor_rep.ready_to_sign:
+            franchisor_rep.signature
+        for franchisee in franchisees:
+          if franchisee.ready_to_sign:
+            franchisee.signature
+        for franchisee_owner in franchisee_owners:
+          if franchisee_owner.ready_to_sign:
+            franchisee_owner.signature       
+      # Show the follow-up either way
+      if device().is_mobile:
+        signature_phone_followup
+  basic_questions_signature_flow = True
+---
 id: download Crepe_Delicious_Franchise_Agreement
 event: Crepe_Delicious_Franchise_Agreement_download
 question: |
@@ -499,22 +576,70 @@ attachments:
       - "franchisees1_llc": ${ ownership_form == "llc" }
       - "franchisees1_individual": ${ ownership_form == "individual" }
       - "city_and_state_of_formation": ${ city + ", " + state }
-      - "california": ${ addenda == "california" }
-      - "michigan": ${ addenda == "michigan" }
-      - "rhode_island": ${ addenda == "rhode_island" }
-      - "minnesota": ${ addenda == "minnesota" }
-      - "hawaii": ${ addenda == "hawaii" }
-      - "south_dakota": ${ addenda == "south_dakota" }
-      - "virginia": ${ addenda == "virginia" }
-      - "illinois": ${ addenda == "illinois" }
-      - "new_york": ${ addenda == "new_york" }
-      - "washington": ${ addenda == "washington" }
-      - "iowa": ${ addenda == "iowa" }
-      - "north_dakota": ${ addenda == "north_dakota" }
-      - "indiana": ${ addenda == "indiana" }
-      - "ohio": ${ addenda == "ohio" }
-      - "wisconsin": ${ addenda == "wisconsin" }
-      - "maryland": ${ addenda == "maryland" }
+      - "california": |
+          % if applicable_addenda: 
+            ${ addenda == "california" }
+          % endif
+      - "michigan": |
+          % if applicable_addenda: 
+            ${ addenda == "michigan" }
+          % endif
+      - "rhode_island": |
+          % if applicable_addenda: 
+            ${ addenda == "rhode_island" }
+          % endif
+      - "minnesota": |
+          % if applicable_addenda: 
+            ${ addenda == "minnesota" }
+          % endif
+      - "hawaii": |
+          % if applicable_addenda: 
+            ${ addenda == "hawaii" }
+          % endif
+      - "south_dakota": |
+          % if applicable_addenda: 
+            ${ addenda == "south_dakota" }
+          % endif
+      - "virginia": |
+          % if applicable_addenda: 
+            ${ addenda == "virginia" }
+          % endif
+      - "illinois": |
+          % if applicable_addenda: 
+            ${ addenda == "illinois" }
+          % endif
+      - "new_york": |
+          % if applicable_addenda: 
+            ${ addenda == "new_york" }
+          % endif
+      - "washington": |
+          % if applicable_addenda: 
+            ${ addenda == "washington" }
+          % endif
+      - "iowa": |
+          % if applicable_addenda: 
+            ${ addenda == "iowa" }
+          % endif
+      - "north_dakota": |
+          % if applicable_addenda: 
+            ${ addenda == "north_dakota" }
+          % endif
+      - "indiana": |
+          % if applicable_addenda: 
+            ${ addenda == "indiana" }
+          % endif
+      - "ohio": |
+          % if applicable_addenda: 
+            ${ addenda == "ohio" }
+          % endif
+      - "wisconsin": |
+          % if applicable_addenda: 
+            ${ addenda == "wisconsin" }
+          % endif
+      - "maryland": |
+          % if applicable_addenda: 
+            ${ addenda == "maryland" }
+          % endif
       - "bank1_name": ${ bank_name }
       - "bank1_address": ${ bank_address }
       - "bank1_routing_number": ${ bank_routing_number }
