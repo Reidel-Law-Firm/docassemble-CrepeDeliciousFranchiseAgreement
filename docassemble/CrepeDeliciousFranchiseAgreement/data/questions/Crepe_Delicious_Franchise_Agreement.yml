@@ -505,6 +505,7 @@ attachments:
     variable name: Crepe_Delicious_Franchise_Agreement_attachment[i]        
     skip undefined: True
     pdf template file: Crepe_Delicious_FA_-_Interview_Template.pdf
+    editable: False
     fields:
       - "users1_name_full": |
           % if user_choice == "franchisor":
@@ -652,70 +653,22 @@ attachments:
       - "franchisees1_llc": ${ ownership_form == "llc" }
       - "franchisees1_individual": ${ ownership_form == "individual" }
       - "city_and_state_of_formation": ${ city + ", " + state }
-      - "california": |
-          % if applicable_addenda: 
-            ${ addenda == "california" }
-          % endif
-      - "michigan": |
-          % if applicable_addenda: 
-            ${ addenda == "michigan" }
-          % endif
-      - "rhode_island": |
-          % if applicable_addenda: 
-            ${ addenda == "rhode_island" }
-          % endif
-      - "minnesota": |
-          % if applicable_addenda: 
-            ${ addenda == "minnesota" }
-          % endif
-      - "hawaii": |
-          % if applicable_addenda: 
-            ${ addenda == "hawaii" }
-          % endif
-      - "south_dakota": |
-          % if applicable_addenda: 
-            ${ addenda == "south_dakota" }
-          % endif
-      - "virginia": |
-          % if applicable_addenda: 
-            ${ addenda == "virginia" }
-          % endif
-      - "illinois": |
-          % if applicable_addenda: 
-            ${ addenda == "illinois" }
-          % endif
-      - "new_york": |
-          % if applicable_addenda: 
-            ${ addenda == "new_york" }
-          % endif
-      - "washington": |
-          % if applicable_addenda: 
-            ${ addenda == "washington" }
-          % endif
-      - "iowa": |
-          % if applicable_addenda: 
-            ${ addenda == "iowa" }
-          % endif
-      - "north_dakota": |
-          % if applicable_addenda: 
-            ${ addenda == "north_dakota" }
-          % endif
-      - "indiana": |
-          % if applicable_addenda: 
-            ${ addenda == "indiana" }
-          % endif
-      - "ohio": |
-          % if applicable_addenda: 
-            ${ addenda == "ohio" }
-          % endif
-      - "wisconsin": |
-          % if applicable_addenda: 
-            ${ addenda == "wisconsin" }
-          % endif
-      - "maryland": |
-          % if applicable_addenda: 
-            ${ addenda == "maryland" }
-          % endif
+      - "california": ${ applicable_addenda and addenda == "california" }
+      - "michigan": ${ applicable_addenda and addenda == "michigan" }
+      - "rhode_island": ${ applicable_addenda and addenda == "rhode_island" }
+      - "minnesota": ${ applicable_addenda and addenda == "minnesota" }
+      - "hawaii": ${ applicable_addenda and addenda == "hawaii" }
+      - "south_dakota": ${ applicable_addenda and addenda == "south_dakota" }
+      - "virginia": ${ applicable_addenda and addenda == "virginia" }
+      - "illinois": ${ applicable_addenda and addenda == "illinois" }
+      - "new_york": ${ applicable_addenda and addenda == "new_york" }
+      - "washington": ${ applicable_addenda and addenda == "washington" }
+      - "iowa": ${ applicable_addenda and addenda == "iowa" }
+      - "north_dakota": ${ applicable_addenda and addenda == "north_dakota" }
+      - "indiana": ${ applicable_addenda and addenda == "indiana" }
+      - "ohio": ${ applicable_addenda and addenda == "ohio" }
+      - "wisconsin": ${ applicable_addenda and addenda == "wisconsin" }
+      - "maryland": ${ applicable_addenda and addenda == "maryland" }
       - "bank1_name": ${ bank_name }
       - "bank1_address": ${ bank_address }
       - "bank1_routing_number": ${ bank_routing_number }
@@ -729,11 +682,11 @@ attachments:
       - "signature_date_3": ${ today() }
       - "signature_date_4": ${ today() }
       - "signature_date_5": ${ today() }
-      - "signature_date_6": ${ today() }
+      - "signature_date_6": ${ format_date(today(), format='MMMM d') }
       - "signature_date_7": ${ format_date(today(), format='yy') }
-      - "signature_date_8": ${ today() }
+      - "signature_date_8": ${ format_date(today(), format='MMMM d') }
       - "signature_date_9": ${ format_date(today(), format='yy') }
-      - "signature_date_10": ${ today() }
+      - "signature_date_10": ${ format_date(today(), format='MMMM d') }
       - "signature_date_11": ${ format_date(today(), format='yy') }
       - "signature_date_12": ${ today() }
       - "signature_date_13": ${ today() }
