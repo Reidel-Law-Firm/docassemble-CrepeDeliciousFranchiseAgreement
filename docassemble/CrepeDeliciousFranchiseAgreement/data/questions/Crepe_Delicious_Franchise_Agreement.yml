@@ -76,10 +76,13 @@ code: |
   allowed_courts = interview_metadata["Crepe_Delicious_Franchise_Agreement"]["allowed courts"]
   nav.set_section('review_Crepe_Delicious_Franchise_Agreement')
   
-  user_choice
-  franchisors_rep.gather(number=1)
+  if user_choice == "franchisor":
+    franchisors_rep.gather(number=1)
+    franchisee_owners.gather(complete_attribute = "franchisee_owners_complete")
+  else: 
+    franchisee_owners.gather(complete_attribute = "franchisee_owners_complete")
+    franchisors_rep.gather(number=1)
   
-  franchisee_owners.gather(complete_attribute = "franchisee_owners_complete")
   franchisee_managers.gather(complete_attribute = "franchisee_managers_complete") 
 
   #user_role = 'na'
@@ -87,9 +90,6 @@ code: |
   set_progress(8)
   
   set_progress(16)
-  
-  #users.gather()
-  #set_parts(subtitle=str(users))
 
   set_progress(25)
 
@@ -147,34 +147,8 @@ fields:
   - no label: user_choice
     datatype: radio
     choices:
-      - Franchisor: fanchisor
+      - Franchisor: franchisor
       - Franchisee: franchisee
----
-id: your name
-sets:
-    - users[0].name.first
-    - users[0].name.last
-    - users[0].name.middle
-    - users[0].name.suffix
-question:  |
-  What is your name and title?
-fields:
-  - code: |
-      users[0].name_fields()
-  - Title: users[0].title
----
-sets:
-  - users[i].name.first
-  - users[i].name.last
-  - users[i].name.middle
-  - users[i].name.suffix    
-id: other users names
-question: |
-  What is the ${ ordinal_number(i) } person's name and title?
-fields:
-  - code: |
-      users[i].name_fields()
-  - Title: users[i].title
 ---
 id: franchisees name
 sets:
@@ -330,6 +304,14 @@ fields:
   - code: |
       franchisors_rep[0].name_fields()
   - Title: franchisors_rep[0].title
+    choices: 
+      - Franchise Director: Franchise Director
+      - Chairman: Chairman
+      - CEO/President: CEO/President
+      - Franchise Representative: Franchise Representative
+      - COO: COO
+      - Development Officer: Development Officer
+      - Director: Director
 ---
 id: franchisee managers names
 sets:
@@ -347,6 +329,33 @@ fields:
   - code: |
       franchisee_managers[i].name_fields()
   - Title: franchisee_managers[i].title
+    choices: 
+      - Manager: Manager
+      - CEO/President: CEO/President
+---
+id: franchisee owners names
+sets:
+    - franchisee_owners[i].name.first
+    - franchisee_owners[i].name.last
+    - franchisee_owners[i].name.middle
+    - franchisee_owners[i].name.suffix
+question:  |
+  % if hasattr(x, 'ask_number') and x.ask_number and x.target_number == 1:
+  Name and title of ${ noun_plural(franchisee_owners.object_name(),1) }
+  % else:
+  Name and title of the first ${ noun_plural(franchisee_owners.object_name(),1) }
+  % endif
+fields:
+  - code: |
+      franchisee_owners[i].name_fields()
+  - Title: franchisee_owners[i].title
+    choices: 
+      - Owner: Owner
+      - Member: Member
+      - Manager: Manager
+      - Director: Director
+      - CEO/President: CEO/President
+      - Shareholder: Shareholder
 ---
 id: names
 sets:
@@ -405,7 +414,7 @@ under: |
   ${x}
 ---
 code: |
-    signature_fields = [sig.attr_name('signature') for sig in users if sig.ready_to_sign] + [sig.attr_name('signature') for sig in franchisors_rep if sig.ready_to_sign] + [sig.attr_name('signature') for sig in franchisees if sig.ready_to_sign] + [sig.attr_name('signature') for sig in franchisee_owners if sig.ready_to_sign]
+    signature_fields = [sig.attr_name('signature') for sig in franchisors_rep if sig.ready_to_sign] + [sig.attr_name('signature') for sig in franchisees if sig.ready_to_sign] + [sig.attr_name('signature') for sig in franchisee_owners if sig.ready_to_sign]
 ---
 # Triggers some questions to ask for signatures on either desktop or mobile
 # Allows sending via text/email
@@ -598,7 +607,7 @@ attachments:
           % endif
       - "franchisee_managers1_name_full": ${ franchisee_managers[0] }
       - "franchisee_managers1_address": ${ franchisee_managers[0].address }
-      - "franchisee_managers1_title": ${ franchisee_managers1[0].title }
+      - "franchisee_managers1_title": ${ franchisee_managers[0].title }
       - "franchisee_managers2_name_full": ${ franchisee_managers[1] }
       - "franchisee_managers2_address": ${ franchisee_managers[1].address }
       - "franchisee_managers2_title": ${ franchisee_managers[1].title }
