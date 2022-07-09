@@ -2,6 +2,7 @@
 include:
   - docassemble.AssemblyLine:al_package.yml
   - review_screens.yml
+  - docassemble.ReidelTheme:theme.yml  
 ---
 metadata:
   title: |
