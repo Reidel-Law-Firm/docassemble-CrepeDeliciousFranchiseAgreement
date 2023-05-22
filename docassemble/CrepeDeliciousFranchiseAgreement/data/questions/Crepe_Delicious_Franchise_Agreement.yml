@@ -49,7 +49,7 @@ code: |
   AL_DEFAULT_STATE = "TX"
 ---
 code: |
-  github_repo_name =  'docassemble-CrepeDeliciousFranchiseAgreement'
+  github_repo_name = 'docassemble-CrepeDeliciousFranchiseAgreement'
 ---
 code: |
   interview_short_title = "Get a Crepe Delicious Franchise Agreement"
@@ -58,12 +58,13 @@ code: |
   al_form_type = 'other_form'
 ---
 objects:
-  #- users: ALPeopleList.using(there_are_any=True)
   - franchisors_rep: ALPeopleList.using(there_are_any=True)
   - franchisees: ALPeopleList.using(there_are_any=True)
   - franchisee_owners: ALPeopleList.using(there_are_any=True)
-  - owners: ALPeopleList.using(there_are_any=True)
   - franchisee_managers: ALPeopleList.using(there_are_any=True)
+---
+code: | 
+  franchisee_signors = franchisee_owners + franchisee_managers
 ---
 sections:
   - review_Crepe_Delicious_Franchise_Agreement: Review your answers
@@ -125,11 +126,9 @@ mandatory: True
 code: |
   Crepe_Delicious_Franchise_Agreement_intro
   interview_order_Crepe_Delicious_Franchise_Agreement
-  #signature_date
-  # Save anonymized interview statistics (customize the saved data below)
-  #store_variables_snapshot(data={'zip': users[0].address.zip})
+
   Crepe_Delicious_Franchise_Agreement_preview_question
-  basic_questions_signature_flow
+  sig_flow
   Crepe_Delicious_Franchise_Agreement_download
 ---
 comment: |
@@ -414,73 +413,18 @@ required: False
 under: |
   ${x}
 ---
-code: |
-    signature_fields = [sig.attr_name('signature') for sig in franchisors_rep if sig.ready_to_sign] + [sig.attr_name('signature') for sig in franchisees if sig.ready_to_sign] + [sig.attr_name('signature') for sig in franchisee_owners if sig.ready_to_sign]
+code: | 
+  for x in franchisors_rep + franchisee_signors:
+    if x.ready_to_sign:
+      x.signature
+      
+  
+      
+  sig_flow = True
 ---
-# Triggers some questions to ask for signatures on either desktop or mobile
-# Allows sending via text/email
-id: basic questions signature flow control
-code: |
-  if started_on_phone:
-    saw_signature_choice = True
-    for franchisor_rep in franchisors_rep:
-      if franchisor_rep.ready_to_sign:
-        franchisor_rep.signature
-    for franchisee in franchisees:
-      if franchisee.ready_to_sign:
-        franchisee.signature
-    for franchisee_owner in franchisee_owners:
-      if franchisee_owner.ready_to_sign:
-        franchisee_owner.signature
-    # Add in logic for when we need additional signatures
-  else: 
-    # Three branches:
-    # 1. Decided to sign on the PC
-    # 2. Sent someone a link to sign the form
-    # 3. Used the QR code
-    saw_signature_choice
-    # Branch 1: PC
-    if signature_choice =='this device':
-      for franchisor_rep in franchisors_rep:
-        if franchisor_rep.ready_to_sign:
-          franchisor_rep.signature
-      for franchisee in franchisees:
-        if franchisee.ready_to_sign:
-          franchisee.signature
-      for franchisee_owner in franchisee_owners:
-        if franchisee_owner.ready_to_sign:
-          franchisee_owner.signature
-    # Check for Branch 2 or 3
-    elif signature_choice == 'phone':
-      saw_signature_qrcode
-      # User will click next. link_cell will only be defined if they chose the texting option
-      if defined('link_cell') and link_cell and task_not_yet_performed('send signature link'): 
-        # They used the text option
-        send_sms(task='send signature link', to=link_cell,template=interview_link)
-        signature_wait_screen
-        for franchisor_rep in franchisors_rep:
-          if franchisor_rep.ready_to_sign:
-            franchisor_rep.signature
-        for franchisee in franchisees:
-          if franchisee.ready_to_sign:
-            franchisee.signature
-        for franchisee_owner in franchisee_owners:
-          if franchisee_owner.ready_to_sign:
-            franchisee_owner.signature     
-      else: # Branch 3: They used the QR Code. No special screen, just continue
-        for franchisor_rep in franchisors_rep:
-          if franchisor_rep.ready_to_sign:
-            franchisor_rep.signature
-        for franchisee in franchisees:
-          if franchisee.ready_to_sign:
-            franchisee.signature
-        for franchisee_owner in franchisee_owners:
-          if franchisee_owner.ready_to_sign:
-            franchisee_owner.signature       
-      # Show the follow-up either way
-      if device().is_mobile:
-        signature_phone_followup
-  basic_questions_signature_flow = True
+#code: |
+#    signature_fields = [sig.attr_name('signature') for sig in franchisors_rep if sig.ready_to_sign] + [sig.attr_name('signature') for sig in franchisees if sig.ready_to_sign] + [sig.attr_name('signature') for sig in franchisee_owners if sig.ready_to_sign]
+
 ---
 id: download Crepe_Delicious_Franchise_Agreement
 event: Crepe_Delicious_Franchise_Agreement_download
@@ -517,95 +461,34 @@ attachments:
     pdf template file: Crepe_Delicious_FA_-_Interview_Template.pdf
     editable: False
     fields:
-      - "users1_name_full": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0] }
-          % else:
-          ${ franchisee_owners[0] }
-          % endif
-      - "users1_name_full_1": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0] }
-          % else:
-          ${ franchisee_owners[0] }
-          % endif |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0] }
-          % else:
-          ${ franchisee_owners[0] }
-          % endif
-      - "users1_name_full_2": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0] }
-          % else:
-          ${ franchisee_owners[0] }
-          % endif
-      - "users1_name_full_3": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0] }
-          % else:
-          ${ franchisee_owners[0] }
-          % endif
-      - "users1_name_full_4": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0] }
-          % else:
-          ${ franchisee_owners[0] }
-          % endif
-      - "users1_name_full_5": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0] }
-          % else:
-          ${ franchisee_owners[0] }
-          % endif
-      - "users1_title": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0].title }
-          % else:
-          ${ franchisee_owners[0].title }
-          % endif
-      - "users1_title_1": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0].title }
-          % else:
-          ${ franchisee_owners[0].title }
-          % endif
-      - "users1_title_2": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0].title }
-          % else:
-          ${ franchisee_owners[0].title }
-          % endif
-      - "users1_title_3": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0].title }
-          % else:
-          ${ franchisee_owners[0].title }
-          % endif
-      - "users1_title_4": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0].title }
-          % else:
-          ${ franchisee_owners[0].title }
-          % endif
-      - "users1_title_5": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0].title }
-          % else:
-          ${ franchisee_owners[0].title }
-          % endif
-      - "users2_name_full": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[1] }
-          % else:
-          ${ franchisee_owners[1] }
-          % endif
-      - "users2_title": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[1].title }
-          % else:
-          ${ franchisee_owners[1].title }
-          % endif
+      - "franchisee_signors1_name_full": |
+          ${ franchisee_signors[0] }
+      - "franchisee_signors1_name_full_1": |
+          ${ franchisee_signors[0] }
+      - "franchisee_signors1_name_full_2": |
+          ${ franchisee_signors[0] }
+      - "franchisee_signors1_name_full_3": |
+          ${ franchisee_signors[0] }
+      - "franchisee_signors1_name_full_4": |
+          ${ franchisee_signors[0] }
+      - "franchisee_signors1_name_full_5": |
+          ${ franchisee_signors[0] }
+      - "franchisee_signors1_title": |
+          ${ franchisee_signors[0].title }
+      - "franchisee_signors1_title_1": |
+          ${ franchisee_signors[0].title }
+      - "franchisee_signors1_title_2": |
+          ${ franchisee_signors[0].title }
+      - "franchisee_signors1_title_3": |
+          ${ franchisee_signors[0].title }
+      - "franchisee_signors1_title_4": |
+          ${ franchisee_signors[0].title }
+      - "franchisee_signors1_title_5": |
+          ${ franchisee_signors[0].title }
+      - "franchisee_signors2_name_full": |
+          ${ franchisee_signors[1] }
+      - "franchisee_signors2_title": |
+          ${ franchisee_signors[1].title }
       - "franchisee_managers1_name_full": ${ franchisee_managers[0] }
       - "franchisee_managers1_address": ${ franchisee_managers[0].address }
       - "franchisee_managers1_title": ${ franchisee_managers[0].title }
@@ -701,58 +584,26 @@ attachments:
       - "signature_date_12": ${ today() }
       - "signature_date_13": ${ today() }
       - "date_of_signing": ${ today() }
-      - "users1_signature_1": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0].signature_if_final(i) }
-          % else:
-          ${ franchisee_owners[0].signature_if_final(i) }
-          % endif
-      - "users1_signature_2": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0].signature_if_final(i) }
-          % else:
-          ${ franchisee_owners[0].signature_if_final(i) }
-          % endif
-      - "users1_signature_3": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0].signature_if_final(i) }
-          % else:
-          ${ franchisee_owners[0].signature_if_final(i) }
-          % endif
-      - "users1_signature_4": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0].signature_if_final(i) }
-          % else:
-          ${ franchisee_owners[0].signature_if_final(i) }
-          % endif
-      - "users1_signature_5": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0].signature_if_final(i) }
-          % else:
-          ${ franchisee_owners[0].signature_if_final(i) }
-          % endif
-      - "users1_signature_6": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0].signature_if_final(i) }
-          % else:
-          ${ franchisee_owners[0].signature_if_final(i) }
-          % endif
-      - "users1_signature": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[0].signature_if_final(i) }
-          % else:
-          ${ franchisee_owners[0].signature_if_final(i) }
-          % endif
-      - "users2_signature": |
-          % if user_choice == "franchisor":
-          ${ franchisors_rep[1].signature_if_final(i) }
-          % else:
-          ${ franchisee_owners[1].signature_if_final(i) }
-          % endif
-      - "initials_1": ${ franchisees[0].signature_if_final(i) }
-      - "initials_2": ${ franchisees[0].signature_if_final(i) }
-      - "initials_3": ${ franchisees[0].signature_if_final(i) }
-      - "initials_4": ${ franchisees[0].signature_if_final(i) }
+      - "franchisee_signors1_signature_1": |
+          ${ franchisee_signors[0].signature_if_final(i) }
+      - "franchisee_signors1_signature_2": |
+          ${ franchisee_signors[0].signature_if_final(i) }
+      - "franchisee_signors1_signature_3": |
+          ${ franchisee_signors[0].signature_if_final(i) }
+      - "franchisee_signors1_signature_4": |
+          ${ franchisee_signors[0].signature_if_final(i) }
+      - "franchisee_signors1_signature_5": |
+          ${ franchisee_signors[0].signature_if_final(i) }
+      - "franchisee_signors1_signature_6": |
+          ${ franchisee_signors[0].signature_if_final(i) }
+      - "franchisee_signors1_signature": |
+          ${ franchisee_signors[0].signature_if_final(i) }
+      - "franchisee_signors2_signature": |
+          ${ franchisee_signors[1].signature_if_final(i) }
+      - "franchisee_signors_initials_1": ${ franchisee_signors[0].signature_if_final(i) }
+      - "franchisee_signors_initials_2": ${ franchisee_signors[0].signature_if_final(i) }
+      - "franchisee_signors_initials_3": ${ franchisee_signors[0].signature_if_final(i) }
+      - "franchisee_signors_initials_4": ${ franchisee_signors[0].signature_if_final(i) }
       - "franchisors_rep1_signature_1": ${ franchisors_rep[0].signature_if_final(i) }
       - "franchisors_rep1_signature_2": ${ franchisors_rep[0].signature_if_final(i) }
       - "franchisors_rep1_signature_3": ${ franchisors_rep[0].signature_if_final(i) }
